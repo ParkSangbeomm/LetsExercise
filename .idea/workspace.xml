@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:haerin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0d57016-0b1e-4845-8278-3d25ddcb9053" name="Default Changelist" comment="">
+    <list default="true" id="d0d57016-0b1e-4845-8278-3d25ddcb9053" name="Default Changelist" comment="test 1031">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/organization_chat_app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,21 +68,64 @@
       <option name="presentableId" value="Default" />
       <updated>1635390238981</updated>
     </task>
+    <task id="LOCAL-00001" summary="test 1031">
+      <created>1635677302728</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1635677302728</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="haerin" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test 1031" />
+    <option name="LAST_COMMIT_MESSAGE" value="test 1031" />
   </component>
   <component name="WindowStateProjectService">
     <state x="183" y="108" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1635390401715">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="183" y="108" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1635390401715" />
-    <state x="278" y="24" key="CommitChangelistDialog2" timestamp="1635390413996">
+    <state x="278" y="24" key="CommitChangelistDialog2" timestamp="1635678091087">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="278" y="24" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635390413996" />
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2" timestamp="1635390532254">
+    <state x="278" y="24" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635678091087" />
+    <state x="319" y="187" key="Vcs.Push.Dialog.v2" timestamp="1635677337709">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635390532254" />
+    <state x="319" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635677337709" />
+    <state x="502" y="367" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1635677974668">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="502" y="367" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1635677974668" />
+    <state x="340" y="242" key="git4idea.merge.GitPullDialog" timestamp="1635678215761">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="340" y="242" key="git4idea.merge.GitPullDialog/0.0.1440.900@0.0.1440.900" timestamp="1635678215761" />
     <state x="441" y="343" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1635677229477">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
