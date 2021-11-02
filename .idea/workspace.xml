@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -25,9 +28,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0d57016-0b1e-4845-8278-3d25ddcb9053" name="Default Changelist" comment="test 1031">
+    <list default="true" id="d0d57016-0b1e-4845-8278-3d25ddcb9053" name="Default Changelist" comment="first main change">
+      <change beforePath="$PROJECT_DIR$/.idea/OrganizationChartApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OrganizationChartApp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/organization_chat_app/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organization_chat_app/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organization_chat_app/ios/Flutter/Debug.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/ios/Flutter/Debug.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organization_chat_app/ios/Flutter/Release.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/ios/Flutter/Release.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organization_chat_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organization_chat_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/organization_chat_app/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/organization_chat_app/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +46,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="eclipse34" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,9 +63,10 @@
     <property name="project.structure.last.edited" value="SDK Location" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="dart.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -75,7 +85,21 @@
       <option name="project" value="LOCAL" />
       <updated>1635677302728</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="first main change">
+      <created>1635692431638</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1635692431638</updated>
+    </task>
+    <task id="LOCAL-00003" summary="first main change">
+      <created>1635692475572</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1635692475572</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -100,35 +124,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test 1031" />
-    <option name="LAST_COMMIT_MESSAGE" value="test 1031" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="183" y="108" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1635390401715">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="183" y="108" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1635390401715" />
-    <state x="278" y="24" key="CommitChangelistDialog2" timestamp="1635678091087">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="278" y="24" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1635678091087" />
-    <state x="319" y="187" key="Vcs.Push.Dialog.v2" timestamp="1635677337709">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="319" y="187" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1635677337709" />
-    <state x="502" y="367" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1635677974668">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="502" y="367" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1635677974668" />
-    <state x="340" y="242" key="git4idea.merge.GitPullDialog" timestamp="1635678215761">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="340" y="242" key="git4idea.merge.GitPullDialog/0.0.1440.900@0.0.1440.900" timestamp="1635678215761" />
-    <state x="441" y="343" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1635677229477">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="441" y="343" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1440.900@0.0.1440.900" timestamp="1635677229477" />
+    <MESSAGE value="first main change" />
+    <option name="LAST_COMMIT_MESSAGE" value="first main change" />
   </component>
 </project>
