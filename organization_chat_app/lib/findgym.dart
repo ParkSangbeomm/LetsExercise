@@ -19,9 +19,7 @@ class _FindgymPageState extends State<FindgymPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Google Maps"),
-      ),
+
       body: Container(
         height: double.infinity,
         width: double.infinity,
