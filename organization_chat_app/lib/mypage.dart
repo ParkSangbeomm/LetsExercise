@@ -9,9 +9,12 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
 
-    return const Scaffold(
-      body: Center(
-        child: Text('My page',style: TextStyle(color: Color(0xff383434))),
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.05, MediaQuery.of(context).size.height*0.05, MediaQuery.of(context).size.width*0.05, 0.0),
+        child: Center(
+          child: Text('my page',style: TextStyle(color: Color(0xff383434))),
+        ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
