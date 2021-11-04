@@ -23,6 +23,7 @@ class _FindgymPageState extends State<FindgymPage> {
         title: Text("Google Maps"),
       ),
       body: Container(
+        // padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.05, MediaQuery.of(context).size.height*0.05, MediaQuery.of(context).size.width*0.05, 0.0),
         height: double.infinity,
         width: double.infinity,
         child: GoogleMap(
@@ -32,6 +33,7 @@ class _FindgymPageState extends State<FindgymPage> {
           },
         ),
       ),
+
     );
   }
 }
