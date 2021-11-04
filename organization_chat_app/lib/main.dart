@@ -5,3 +5,4 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(ExerciseApp());
 }
+
