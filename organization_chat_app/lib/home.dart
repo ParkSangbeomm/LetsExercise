@@ -13,7 +13,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: const Color(0xffe49191),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.05, MediaQuery.of(context).size.height*0.05, MediaQuery.of(context).size.width*0.05, 0.0),
+        padding: EdgeInsets.fromLTRB(
+            MediaQuery.of(context).size.width * 0.05,
+            MediaQuery.of(context).size.height * 0.05,
+            MediaQuery.of(context).size.width * 0.05,
+            0.0),
         child: Column(
           children: [
             Container(
@@ -22,7 +26,8 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                       alignment: Alignment.center,
-                      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, MediaQuery.of(context).size.height*0.01),
+                      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0,
+                          MediaQuery.of(context).size.height * 0.01),
                       child: const Text('Ranking',
                           style: TextStyle(
                               color: Color(0xffffffff),
@@ -66,7 +71,11 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.18, 0.0, MediaQuery.of(context).size.width*0.18, 0.0),
+                          margin: EdgeInsets.fromLTRB(
+                              MediaQuery.of(context).size.width * 0.18,
+                              0.0,
+                              MediaQuery.of(context).size.width * 0.18,
+                              0.0),
                           child: TextButton(
                             onPressed: () {
                               setState(() {
@@ -126,29 +135,10 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                   ),
-                  Container(
-                    child: Row(
-                      children: [
-                        Center(
-                          child: Column(
-                            children: [
-                              Icon(
-                                Icons.star,
-                                size: 28,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Column(
-
-                        )
-                      ],
-                    ),
-                  ),
+                  rankBox(),
                 ],
               ),
             ),
@@ -158,6 +148,88 @@ class _HomePageState extends State<HomePage> {
       // body: Center(
       //   child: Text('Main page',style: TextStyle(color: Color(0xff383434))),
       // )
+    );
+  }
+}
+
+class rankBox extends StatelessWidget {
+  const rankBox({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+          0.0, MediaQuery.of(context).size.height * 0.01, 0.0, 0.0),
+      alignment: Alignment.topLeft,
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 1,
+          // color: Colors.orange,
+        ),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.3,
+            alignment: Alignment.topLeft,
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: Colors.red,
+              ),
+            ),
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 28,
+                  ),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage('img/profile.jpeg'),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Text('로운',
+                      style: TextStyle(color: Color(0xffffffff), fontSize: 15)),
+                  Text('5시간 / 3일 ',
+                      style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 15,
+                      )),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            child: Column(
+              children: [
+                Row(children: [
+                  Text(
+                    '2',
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.blueAccent,
+                      ),
+                    ),
+                    child: Row(
+
+                    ),
+                  )
+                ])
+                // for (var i = 0; i < hotels.length; i++)
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
