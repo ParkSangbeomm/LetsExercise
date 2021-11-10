@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 int _rankIndex = 0;
 
@@ -206,30 +207,106 @@ class rankBox extends StatelessWidget {
             ),
           ),
           Container(
+            margin: EdgeInsets.fromLTRB(
+                0.0, 0.0, 0.0, 0.0),
+            decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: Colors.blue,
+              ),
+            ),
             child: Column(
               children: [
-                Row(children: [
-                  Text(
-                    '2',
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.blueAccent,
-                      ),
-                    ),
-                    child: Row(
-
-                    ),
-                  )
-                ])
+                rank_friend(name: '김해린', times: '5시간', days: '3일',rank: 2.toString()),
+                rank_friend(name: '김영훈', times: '5시간', days: '3일',rank: 3.toString()),
+                rank_friend(name: '박상범', times: '5시간', days: '3일', rank: 4.toString()),
                 // for (var i = 0; i < hotels.length; i++)
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
+class rank_friend extends StatelessWidget {
+  final String name;
+  final String times;
+  final String days;
+  final String rank;
+  rank_friend({required this.name, required this.times, required this.days, required this.rank});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topLeft,
+      margin: EdgeInsets.fromLTRB(
+          0.0,
+          0.0,
+          0.0,
+          MediaQuery.of(context).size.height * 0.01),
+      child: Row(children: [
+        Text(
+          this.rank,
+        ),
+        Container(
+          margin: EdgeInsets.fromLTRB(
+              MediaQuery.of(context).size.width * 0.02,
+              0.0,
+              0.0,
+              0.0),
+          width: MediaQuery.of(context).size.width * 0.542,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.white.withOpacity(0.5),
+          ),
+          child: Row(
+            // mainAxisAlignment: MainAxisAlignment.end,
+
+            children: [
+              CircleAvatar(
+                radius: 20,
+                backgroundImage: AssetImage('img/profile.jpeg'),
+              ),
+              Container(
+                margin: EdgeInsets.fromLTRB(
+                    MediaQuery.of(context).size.width * 0.05,
+                    0.0,
+                    MediaQuery.of(context).size.width * 0.09,
+                    0.0),
+                child: Text(
+                  this.name,
+                ),
+              ),
+
+              Container(
+                // width: MediaQuery.of(context).size.width * 0.01,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.red,
+                    ),
+                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      this.days +' / '+ this.times,
+                      style: TextStyle(
+                        fontSize: 12,
+                        // fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                )
+              ),
+            ],
+          ),
+        )
+      ]),
+    );
+  }
+}
+
+
