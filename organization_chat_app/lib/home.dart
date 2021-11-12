@@ -140,6 +140,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   rankBox(),
+                  // Stack(
+                  //   children: [
+                  //     Container(
+                  //       width: 400,
+                  //       height: 400,
+                  //       color: Colors.green,
+                  //     ),
+                  //   ],
+                  // )
                 ],
               ),
             ),
@@ -186,9 +195,6 @@ class rankBox extends StatelessWidget {
                   CircleAvatar(
                     radius: 40,
                     backgroundImage: AssetImage('img/profile.jpeg'),
-                  ),CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('img/profile.jpeg'),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
@@ -206,7 +212,7 @@ class rankBox extends StatelessWidget {
           ),
 
           Container(
-            height: 160,
+            height: 145,
             margin: EdgeInsets.fromLTRB(
                 0.0, 0.0, 0.0, 0.0),
             child: SingleChildScrollView(
