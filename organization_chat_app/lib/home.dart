@@ -164,24 +164,18 @@ class rankBox extends StatelessWidget {
       margin: EdgeInsets.fromLTRB(
           0.0, MediaQuery.of(context).size.height * 0.01, 0.0, 0.0),
       alignment: Alignment.topLeft,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-          // color: Colors.orange,
-        ),
-      ),
+      // decoration: BoxDecoration(
+      //   border: Border.all(
+      //     width: 1,
+      //     color: Colors.orange,
+      //   ),
+      // ),
       child: Row(
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.3,
             height: 160,
             alignment: Alignment.topLeft,
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Colors.red,
-              ),
-            ),
             child: Center(
               child: Column(
                 children: [
@@ -212,12 +206,6 @@ class rankBox extends StatelessWidget {
             height: 160,
             margin: EdgeInsets.fromLTRB(
                 0.0, 0.0, 0.0, 0.0),
-            decoration: BoxDecoration(
-              border: Border.all(
-                width: 1,
-                color: Colors.blue,
-              ),
-            ),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -225,7 +213,7 @@ class rankBox extends StatelessWidget {
                   rank_friend(name: '김영훈', times: '5시간', days: '3일',rank: 3.toString()),
                   rank_friend(name: '박상범', times: '5시간', days: '3일', rank: 4.toString()),
                   rank_friend(name: '강신엽', times: '5시간', days: '3일', rank: 5.toString()),
-                  rank_friend(name: '서인아', times: '5시간', days: '3일', rank: 6.toString()),
+                  rank_friend(name: '변희주', times: '5시간', days: '3일', rank: 6.toString()),
                   // for (var i = 0; i < hotels.length; i++)
                 ],
               ),
@@ -266,7 +254,7 @@ class rank_friend extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.542,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Colors.white.withOpacity(0.5),
+            color: Colors.white.withOpacity(0.3),
           ),
           child: Row(
             // mainAxisAlignment: MainAxisAlignment.end,
@@ -284,17 +272,13 @@ class rank_friend extends StatelessWidget {
                     0.0),
                 child: Text(
                   this.name,
+                  style: TextStyle(
+                    color: Color(0xffffffff),
+                  ),
                 ),
               ),
 
               Container(
-                // width: MediaQuery.of(context).size.width * 0.01,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.red,
-                    ),
-                  ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -302,6 +286,7 @@ class rank_friend extends StatelessWidget {
                       this.days +' / '+ this.times,
                       style: TextStyle(
                         fontSize: 12,
+                        color: Color(0xffffffff),
                         // fontWeight: FontWeight.w600,
                       ),
                     ),
