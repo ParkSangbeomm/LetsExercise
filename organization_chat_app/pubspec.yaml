@@ -62,10 +62,9 @@ flutter:
   uses-material-design: true
   assets:
     - img/profile.jpeg
-
-  # To add assets to your application, add an assets section, like this:
-  assets:
+    - img/gym.jpeg
     - assets/locations.json
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -4,66 +4,98 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
 
 
-class FindgymPage extends StatefulWidget {
+class ListGymPage extends StatefulWidget {
   @override
-  State<FindgymPage> createState() => _FindgymPageState();
+  State<ListGymPage> createState() => _ListGymPageState();
 }
 
-class _FindgymPageState extends State<FindgymPage> {
-  final Map<String, Marker> _markers = {};
-  Future<void> _onMapCreated(GoogleMapController controller) async {
-    final googleOffices = await locations.getGoogleOffices();
-    setState(() {
-      _markers.clear();
-      for (final office in googleOffices.offices) {
-        final marker = Marker(
-          markerId: MarkerId(office.name),
-          position: LatLng(office.lat, office.lng),
-          infoWindow: InfoWindow(
-            title: office.name,
-            snippet: office.address,
-          ),
-        );
-        _markers[office.name] = marker;
-      }
-    });
-  }
+class _ListGymPageState extends State<ListGymPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.12,
-              child: Column(
-                children: [
-                  SizedBox(height: 10,),
-                  TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Hint',
-                      )
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: Column(
+              children: [
+                Container(
+                  width:  MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  color: const Color(0xffe49191),
+                  child: Column(
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).size.height*0.05,),
+                      Text('서울시 중구 태평'),
+                      Text('위치변경'),
+                      Icon(Icons.assistant_navigation)
+                    ],
                   ),
-                  Container(
-                    alignment: Alignment(1.0, 0.0),
-                    child: Text('HI'),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.7,
-              child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(35.95, 128.25),
-                  zoom: 2,
                 ),
-                markers: _markers.values.toSet(),
-              ),
+                Expanded(
+                  child: ListView.builder(
+                    padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                    itemCount: 6,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, int index) {
+                      return Card(
+                        shadowColor: Colors.black,
+                        clipBehavior: Clip.antiAlias,
+                        child: Column(
+                          children: <Widget>[
+                            GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym()));
+                                },
+                                child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.9,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,)),
+                            Column(
+                              children: [
+                              Text('을지로 피트니스 101'),
+                              Row(
+                                children: [
+                                  Text('서울 중구 저동1가'),
+                                  Text('0.8km')
+                                ],
+                              ),
+                              ]
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
+          ),
+        ],
+      ),
+
+      //resizeToAvoidBottomInset: false,
+    );
+  }
+}
+
+class DetailGym extends StatefulWidget {
+  @override
+  State<DetailGym> createState() => _DetailGym();
+}
+
+class _DetailGym extends State<DetailGym> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Column(
+          children: [
+            Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
+            Expanded(
+                child: Column(
+                  children: [
+
+                  ],
+                )
+            )
           ],
         ),
       ),

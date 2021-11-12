@@ -3,6 +3,7 @@ import 'package:organization_chat_app/community.dart';
 import 'package:organization_chat_app/findgym.dart';
 import 'package:organization_chat_app/home.dart';
 import 'package:organization_chat_app/mypage.dart';
+import 'package:organization_chat_app/googlemap.dart';
 
 class Navigationbar extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class Navigationbar extends StatefulWidget {
 
 class _NavigationbarState extends State<Navigationbar> {
   int _screenIndex = 0;
-  final List<Widget> _screenList = [HomePage(), FindgymPage(),CommunityPage(), MyPage()];
+  final List<Widget> _screenList = [HomePage(), ListGymPage(),CommunityPage(), MyPage()];
 
   @override
   Widget build(BuildContext context) {
