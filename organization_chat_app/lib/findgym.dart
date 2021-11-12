@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
+import 'package:organization_chat_app/googlemap.dart';
 
 
 class ListGymPage extends StatefulWidget {
@@ -13,8 +14,8 @@ class _ListGymPageState extends State<ListGymPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
+    return SafeArea(
+      child: Column(
         children: <Widget>[
           Expanded(
             child: Column(
@@ -28,7 +29,12 @@ class _ListGymPageState extends State<ListGymPage> {
                       SizedBox(height: MediaQuery.of(context).size.height*0.05,),
                       Text('서울시 중구 태평'),
                       Text('위치변경'),
-                      Icon(Icons.assistant_navigation)
+                      IconButton(
+                        icon: Icon(Icons.assistant_navigation),
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => FindgymPage()));
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -84,20 +90,108 @@ class DetailGym extends StatefulWidget {
 class _DetailGym extends State<DetailGym> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
+    return SafeArea(
+      child: Container(
         child: Column(
           children: [
             Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
-            Expanded(
-                child: Column(
-                  children: [
-
-                  ],
-                )
+            Column(
+              children: [
+                timeColumn(),
+              ],
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Container timeColumn() {
+    return Container(
+      child: Column(
+                        children: [
+                          Text('운영시간'),
+                          Text('[평일] 06:00 ~ :23:00'),
+                          Text('[주말] 06:00 ~ :23:00'),
+                          Text('[공휴일] 06:00 ~ :23:00'),
+                          Text('[휴관일] 06:00 ~ :23:00'),
+                          Divider(color: Colors.black, thickness : 1.0)
+                        ],
+                      ),
+    );
+  }
+
+  Container programColumn() {
+    return Container(
+      child: Column(
+        children: [
+          Text('운영시간'),
+          Text('[평일] 06:00 ~ :23:00'),
+          Text('[주말] 06:00 ~ :23:00'),
+          Text('[공휴일] 06:00 ~ :23:00'),
+          Text('[휴관일] 06:00 ~ :23:00'),
+          Divider(color: Colors.black, thickness : 1.0)
+        ],
+      ),
+    );
+  }
+
+  Container machineColumn() {
+    return Container(
+      child: Column(
+        children: [
+          Text('운영시간'),
+          Text('[평일] 06:00 ~ :23:00'),
+          Text('[주말] 06:00 ~ :23:00'),
+          Text('[공휴일] 06:00 ~ :23:00'),
+          Text('[휴관일] 06:00 ~ :23:00'),
+          Divider(color: Colors.black, thickness : 1.0)
+        ],
+      ),
+    );
+  }
+
+  Container contact() {
+    return Container(
+      child: Column(
+        children: [
+          Text('운영시간'),
+          Text('[평일] 06:00 ~ :23:00'),
+          Text('[주말] 06:00 ~ :23:00'),
+          Text('[공휴일] 06:00 ~ :23:00'),
+          Text('[휴관일] 06:00 ~ :23:00'),
+          Divider(color: Colors.black, thickness : 1.0)
+        ],
+      ),
+    );
+  }
+
+  Container facilities() {
+    return Container(
+      child: Column(
+        children: [
+          Text('운영시간'),
+          Text('[평일] 06:00 ~ :23:00'),
+          Text('[주말] 06:00 ~ :23:00'),
+          Text('[공휴일] 06:00 ~ :23:00'),
+          Text('[휴관일] 06:00 ~ :23:00'),
+          Divider(color: Colors.black, thickness : 1.0)
+        ],
+      ),
+    );
+  }
+
+  Container location() {
+    return Container(
+      child: Column(
+        children: [
+          Text('운영시간'),
+          Text('[평일] 06:00 ~ :23:00'),
+          Text('[주말] 06:00 ~ :23:00'),
+          Text('[공휴일] 06:00 ~ :23:00'),
+          Text('[휴관일] 06:00 ~ :23:00'),
+          Divider(color: Colors.black, thickness : 1.0)
+        ],
       ),
     );
   }
