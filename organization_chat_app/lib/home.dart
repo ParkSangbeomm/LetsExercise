@@ -195,9 +195,6 @@ class rankBox extends StatelessWidget {
                   CircleAvatar(
                     radius: 40,
                     backgroundImage: AssetImage('img/profile.jpeg'),
-                  ),CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('img/profile.jpeg'),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
