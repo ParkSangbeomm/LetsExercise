@@ -13,15 +13,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffe49191),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(
-            MediaQuery.of(context).size.width * 0.05,
-            MediaQuery.of(context).size.height * 0.05,
-            MediaQuery.of(context).size.width * 0.05,
-            0.0),
+      body: Container(
         child: Column(
           children: [
             Container(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.05,
+                  MediaQuery.of(context).size.height * 0.05,
+                  MediaQuery.of(context).size.width * 0.05,
+                  MediaQuery.of(context).size.height * 0.015),
               child: Column(
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
@@ -140,18 +140,48 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   rankBox(),
-                  // Stack(
-                  //   children: [
-                  //     Container(
-                  //       width: 400,
-                  //       height: 400,
-                  //       color: Colors.green,
-                  //     ),
-                  //   ],
+
+                  // Expanded(
+                  //   child: Stack(
+                  //     children: [
+                  //       Positioned.fill(
+                  //         child: FittedBox(
+                  //           child: Container(
+                  //             color: Colors.white,
+                  //           ),
+                  //         ),
+                  //       ),
+                  //
+                  //     ],
+                  //   ),
                   // )
                 ],
               ),
             ),
+            Expanded(
+                child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25))))),
+            // Container(
+            //   color: Colors.black,
+            //   width: 200,
+            //   height: 200,
+            // ),
+            // Stack(children: [
+            //   Positioned(
+            //     top: MediaQuery.of(context).size.height * 0.4,
+            //     child: Container(
+            //       color: Colors.black,
+            //       width: 200,
+            //       height: 200,
+            //     ),
+            //
+            //   )
+            // ]
+            // ),
           ],
         ),
       ),
@@ -210,19 +240,37 @@ class rankBox extends StatelessWidget {
               ),
             ),
           ),
-
           Container(
             height: 145,
-            margin: EdgeInsets.fromLTRB(
-                0.0, 0.0, 0.0, 0.0),
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  rank_friend(name: '김해린', times: '5시간', days: '3일',rank: 2.toString()),
-                  rank_friend(name: '김영훈', times: '5시간', days: '3일',rank: 3.toString()),
-                  rank_friend(name: '박상범', times: '5시간', days: '3일', rank: 4.toString()),
-                  rank_friend(name: '강신엽', times: '5시간', days: '3일', rank: 5.toString()),
-                  rank_friend(name: '변희주', times: '5시간', days: '3일', rank: 6.toString()),
+                  rank_friend(
+                      name: '김해린',
+                      times: '5시간',
+                      days: '3일',
+                      rank: 2.toString()),
+                  rank_friend(
+                      name: '김영훈',
+                      times: '5시간',
+                      days: '3일',
+                      rank: 3.toString()),
+                  rank_friend(
+                      name: '박상범',
+                      times: '5시간',
+                      days: '3일',
+                      rank: 4.toString()),
+                  rank_friend(
+                      name: '강신엽',
+                      times: '5시간',
+                      days: '3일',
+                      rank: 5.toString()),
+                  rank_friend(
+                      name: '김용현',
+                      times: '5시간',
+                      days: '3일',
+                      rank: 6.toString()),
                   // for (var i = 0; i < hotels.length; i++)
                 ],
               ),
@@ -239,27 +287,25 @@ class rank_friend extends StatelessWidget {
   final String times;
   final String days;
   final String rank;
-  rank_friend({required this.name, required this.times, required this.days, required this.rank});
+  rank_friend(
+      {required this.name,
+      required this.times,
+      required this.days,
+      required this.rank});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topLeft,
       margin: EdgeInsets.fromLTRB(
-          0.0,
-          0.0,
-          0.0,
-          MediaQuery.of(context).size.height * 0.01),
+          0.0, 0.0, 0.0, MediaQuery.of(context).size.height * 0.01),
       child: Row(children: [
         Text(
           this.rank,
         ),
         Container(
           margin: EdgeInsets.fromLTRB(
-              MediaQuery.of(context).size.width * 0.02,
-              0.0,
-              0.0,
-              0.0),
+              MediaQuery.of(context).size.width * 0.02, 0.0, 0.0, 0.0),
           width: MediaQuery.of(context).size.width * 0.542,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
@@ -286,22 +332,20 @@ class rank_friend extends StatelessWidget {
                   ),
                 ),
               ),
-
               Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      this.days +' / '+ this.times,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xffffffff),
-                        // fontWeight: FontWeight.w600,
-                      ),
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    this.days + ' / ' + this.times,
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Color(0xffffffff),
+                      // fontWeight: FontWeight.w600,
                     ),
-                  ],
-                )
-              ),
+                  ),
+                ],
+              )),
             ],
           ),
         )
@@ -309,5 +353,3 @@ class rank_friend extends StatelessWidget {
     );
   }
 }
-
-
