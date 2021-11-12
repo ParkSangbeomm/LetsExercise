@@ -31,41 +31,87 @@ class _FindgymPageState extends State<FindgymPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: ListView(
+        children: <Widget>[Column(
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.12,
-              child: Column(
-                children: [
-                  SizedBox(height: 10,),
-                  TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'Hint',
-                      )
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.05,
+                  0,
+                  MediaQuery.of(context).size.width * 0.05,
+                  0.0),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    icon: const Icon(
+                      Icons.arrow_back_ios,
+                      color: Color(0xffe49191),
+                      size: 30,
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
                   ),
                   Container(
-                    alignment: Alignment(1.0, 0.0),
-                    child: Text('HI'),
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Hint',
+                        )
+                    ),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.7,
-              child: GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: const CameraPosition(
-                  target: LatLng(35.95, 128.25),
-                  zoom: 2,
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.05,
+                  0,
+                  MediaQuery.of(context).size.width * 0.05,
+                  0.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.12,
+                child: Column(
+                  children: [
+                    SizedBox(height: 10,),
+                    TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Hint',
+                        )
+                    ),
+                    Container(
+                      alignment: Alignment(1.0, 0.0),
+                      child: Text('HI'),
+                    ),
+                  ],
                 ),
-                markers: _markers.values.toSet(),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(
+                  MediaQuery.of(context).size.width * 0.05,
+                  0,
+                  MediaQuery.of(context).size.width * 0.05,
+                  0.0),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: GoogleMap(
+                  onMapCreated: _onMapCreated,
+                  initialCameraPosition: const CameraPosition(
+                    target: LatLng(35.95, 128.25),
+                    zoom: 2,
+                  ),
+                  markers: _markers.values.toSet(),
+                ),
               ),
             ),
           ],
-        ),
+        ),]
       ),
     );
   }
