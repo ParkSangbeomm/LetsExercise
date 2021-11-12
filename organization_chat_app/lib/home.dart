@@ -174,6 +174,7 @@ class rankBox extends StatelessWidget {
         children: [
           Container(
             width: MediaQuery.of(context).size.width * 0.3,
+            height: 160,
             alignment: Alignment.topLeft,
             decoration: BoxDecoration(
               border: Border.all(
@@ -206,7 +207,9 @@ class rankBox extends StatelessWidget {
               ),
             ),
           ),
+
           Container(
+            height: 160,
             margin: EdgeInsets.fromLTRB(
                 0.0, 0.0, 0.0, 0.0),
             decoration: BoxDecoration(
@@ -215,13 +218,17 @@ class rankBox extends StatelessWidget {
                 color: Colors.blue,
               ),
             ),
-            child: Column(
-              children: [
-                rank_friend(name: '김해린', times: '5시간', days: '3일',rank: 2.toString()),
-                rank_friend(name: '김영훈', times: '5시간', days: '3일',rank: 3.toString()),
-                rank_friend(name: '박상범', times: '5시간', days: '3일', rank: 4.toString()),
-                // for (var i = 0; i < hotels.length; i++)
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  rank_friend(name: '김해린', times: '5시간', days: '3일',rank: 2.toString()),
+                  rank_friend(name: '김영훈', times: '5시간', days: '3일',rank: 3.toString()),
+                  rank_friend(name: '박상범', times: '5시간', days: '3일', rank: 4.toString()),
+                  rank_friend(name: '강신엽', times: '5시간', days: '3일', rank: 5.toString()),
+                  rank_friend(name: '서인아', times: '5시간', days: '3일', rank: 6.toString()),
+                  // for (var i = 0; i < hotels.length; i++)
+                ],
+              ),
             ),
           ),
         ],
