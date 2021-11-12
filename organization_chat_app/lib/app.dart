@@ -21,7 +21,6 @@ class ExerciseApp extends StatelessWidget {
         '/findgym' : (context) => FindgymPage(),
         '/community' : (context) => CommunityPage(),
         '/myPage' : (context) => MyPage(),
-
       },
     );
   }
