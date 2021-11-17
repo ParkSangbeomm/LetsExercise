@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'editprofile.dart';
+import 'management.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -64,7 +65,10 @@ class _MyPageState extends State<MyPage> {
 
                   ElevatedButton(
                     onPressed: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ManagementPage()),
+                      );
                     },
                     child: const Text("친구 관리"),
 
