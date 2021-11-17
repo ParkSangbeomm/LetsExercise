@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'locations.dart' as locations;
+import 'gymdetail.dart';
 
 
 class FindgymPage extends StatefulWidget {
@@ -56,11 +57,11 @@ class _FindgymPageState extends State<FindgymPage> {
                     },
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.7,
+                    width: MediaQuery.of(context).size.width * 0.75,
                     child: TextField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'Hint',
+                          labelText: '지역, 지하철쳑, 센터 검색',
                         )
                     ),
                   ),
@@ -74,19 +75,20 @@ class _FindgymPageState extends State<FindgymPage> {
                   MediaQuery.of(context).size.width * 0.05,
                   0.0),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.12,
+                height: MediaQuery.of(context).size.height * 0.07,
                 child: Column(
                   children: [
-                    SizedBox(height: 10,),
-                    TextField(
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: 'Hint',
-                        )
-                    ),
-                    Container(
-                      alignment: Alignment(1.0, 0.0),
-                      child: Text('HI'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text('내 헬스장이 보이지 않는다면?'),
+                        TextButton(
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym()));
+                          },
+                          child: Text('시설 추가/정보 변경'),)
+                      ],
+
                     ),
                   ],
                 ),
@@ -99,7 +101,7 @@ class _FindgymPageState extends State<FindgymPage> {
                   MediaQuery.of(context).size.width * 0.05,
                   0.0),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.7,
+                height: MediaQuery.of(context).size.height * 0.8,
                 child: GoogleMap(
                   onMapCreated: _onMapCreated,
                   initialCameraPosition: const CameraPosition(
