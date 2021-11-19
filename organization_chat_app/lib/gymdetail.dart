@@ -16,15 +16,25 @@ class _DetailGym extends State<DetailGym> {
               Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
               Positioned(child: makeText('을지로 피트니스 101', width: 240,  fontSize: 23.0),top: 160,),
               Positioned(child: makeText('서울특별시 동작구 가가대로 100, 지하 1층', width: 340,  fontSize: 17.0), top: 190,),
+              Positioned(
+                child: IconButton(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    color: Color(0xffe49191),
+                    size: 30,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+                top: 30,
+                left: 20,
+              )
             ],
           ),
-          TextButton(
-            onPressed: (){
-              Navigator.pop(context);
-            },
-            child: timeColumn('06:00 ~ :23:00','06:00 ~ :23:00', '매주 월요일'),
-
-          ),
+          timeColumn('06:00 ~ :23:00','06:00 ~ :23:00', '매주 월요일'),
           programColumn('PT / 필라테스', 'O.T 2회'),
           machineColumn('런닝머신 : 13개 / 레플다운 : 4개 / 롱플머신 : 3개 / 플라이 : 3개 / 체스트 프레스 : 4개 / 레그프레스 :4개'),
           contact('010-1111-2222'),
@@ -46,11 +56,20 @@ class _DetailGym extends State<DetailGym> {
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('운영시간', style:TextStyle(fontWeight: FontWeight.bold),),
-          Text('[평일] '+ weekday),
-          Text('[주말] '+ weekend),
-          Text('[휴관일] '+ holiday),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('[평일] '+ weekday),
+                Text('[주말] '+ weekend),
+                Text('[휴관일] '+ holiday),
+              ],
+            ),
+          ),
           Divider(color: Colors.black, thickness: 1.0)
         ],
       ),
@@ -59,14 +78,24 @@ class _DetailGym extends State<DetailGym> {
 
   Widget programColumn(String charged, String free) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('프로그램'),
-          Text('유료'),
-          Text(charged),
-          Text('무료'),
-          Text(free),
+          Text('프로그램', style:TextStyle(fontWeight: FontWeight.bold),),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('유료'),
+                Text(charged),
+                Text('무료'),
+                Text(free),
+              ],
+            ),
+          ),
+
           Divider(color: Colors.black, thickness: 1.0)
         ],
       ),
@@ -77,61 +106,90 @@ class _DetailGym extends State<DetailGym> {
     return Padding(
       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('보유기구'),
-          Text(machine),
+          Text('보유기구', style:TextStyle(fontWeight: FontWeight.bold),),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Column(
+              children: [
+                Text(machine),
+              ],
+            ),
+          ),
           Divider(color: Colors.black, thickness: 1.0)
         ],
       ),
     );
   }
 
-  Container contact(String phone) {
-    return Container(
+  Widget contact(String phone) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('연락처'),
-          Text(phone),
+          Text('연락처', style:TextStyle(fontWeight: FontWeight.bold),),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Column(
+              children: [
+                Text(phone),
+              ],
+            ),
+          ),
           Divider(color: Colors.black, thickness: 1.0)
         ],
       ),
     );
   }
 
-  Container facilities(int a, int b, int c) {
-    return Container(
+  Widget facilities(int a, int b, int c) {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('편의시설'),
-          Row(
-            children:[
-              a==1 ? Icon(Icons.wifi, size: 50,) : Icon(Icons.perm_scan_wifi_sharp , size: 50, ),
-              b==1 ? Icon(Icons.shower, size: 50,) : Icon(Icons.shower_outlined, size: 50,),
-            ]
+          Text('편의시설', style:TextStyle(fontWeight: FontWeight.bold),),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Row(
+                children:[
+                  a==1 ? Icon(Icons.wifi, size: 50,) : Icon(Icons.perm_scan_wifi_sharp , size: 50, ),
+                  b==1 ? Icon(Icons.shower, size: 50,) : Icon(Icons.shower_outlined, size: 50,),
+                ]
+            ),
           ),
 
+
           Divider(color: Colors.black, thickness: 1.0)
         ],
       ),
     );
   }
 
-  Container review() {
-    return Container(
+  Widget review() {
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('이용후기'),
-          Row(
-            children: [
-              Icon(Icons.person, size: 50,),
-              Column(
-                children:[
-                  Text('김한동'),
-                  Text('너무 좋아요!')
-                ]
-              )
-            ],
-          )
+          Text('이용후기', style:TextStyle(fontWeight: FontWeight.bold),),
+          Padding(
+            padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            child: Row(
+              children: [
+                Icon(Icons.person, size: 50,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                    children:[
+                      Text('김한동', style:TextStyle(fontWeight: FontWeight.w600),),
+                      Text('너무 좋아요!')
+                    ]
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );
