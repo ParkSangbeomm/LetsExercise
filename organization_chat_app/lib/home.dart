@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:organization_chat_app/events_example.dart';
+import 'package:organization_chat_app/mypage.dart';
 import 'package:organization_chat_app/src/table_calendar.dart';
 import 'package:organization_chat_app/table_calendar.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 // import 'package:table_calendar/table_calendar.dart';
 import '../utils.dart';
@@ -246,10 +248,10 @@ class _exercise_calendarState extends State<exercise_calendar> {
   Widget build(BuildContext context) {
     return Expanded(
         child: Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(25), topRight: Radius.circular(25))),
       child: Column(
         children: [
           TableCalendar<Event>(
@@ -281,29 +283,118 @@ class _exercise_calendarState extends State<exercise_calendar> {
             },
           ),
           const SizedBox(height: 8.0),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width * 0.03,
+                0,
+                MediaQuery.of(context).size.width * 0.03,
+                0),
+            child: Divider(
+              thickness: 1,
+              color: Colors.grey,
+            ),
+          ),
           Expanded(
             child: ValueListenableBuilder<List<Event>>(
               valueListenable: _selectedEvents,
               builder: (context, value, _) {
-                return ListView.builder(
-                  itemCount: value.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 12.0,
-                        vertical: 4.0,
+                if (value.length != 0) {
+                  return ListView.builder(
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 12.0,
+                          vertical: 4.0,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: ListTile(
+                          onTap: () => print('${value[index]}'),
+                          title: Text('${value[index]}'),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 5, // 높이 추가
                       ),
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12.0),
+                      Text(
+                        "목표 체중까지 -3kg 남았어요! 🔥 ",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                      child: ListTile(
-                        onTap: () => print('${value[index]}'),
-                        title: Text('${value[index]}'),
+                      SizedBox(
+                        height: 3, // 높이 추가
                       ),
-                    );
-                  },
-                );
+                      Container(
+                        child: TextButton(
+                          onPressed: () {
+                            Alert(
+                                context: context,
+                                title: "LOGIN",
+                                content: Column(
+                                  children: <Widget>[
+                                    TextField(
+                                      decoration: InputDecoration(
+                                        icon: Icon(Icons.account_circle),
+                                        labelText: 'Username',
+                                      ),
+                                    ),
+                                    TextField(
+                                      obscureText: true,
+                                      decoration: InputDecoration(
+                                        icon: Icon(Icons.lock),
+                                        labelText: 'Password',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                buttons: [
+                                  DialogButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text(
+                                      "LOGIN",
+                                      style: TextStyle(color: Colors.white, fontSize: 20),
+                                    ),
+                                  )
+                                ]).show();
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.fromLTRB(
+                                MediaQuery.of(context).size.width * 0.03,
+                                0,
+                                MediaQuery.of(context).size.width * 0.03,
+                                0),
+                            minimumSize: Size(70, 40),
+                            alignment: Alignment.center,
+                            backgroundColor: Color(0xffe49191),
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                  color: Color(0xffe49191), width: 2),
+                            ),
+                          ),
+                          child: const Text(
+                            '운동 일지 작성',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xfff3f0f0),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                ;
               },
             ),
           ),
