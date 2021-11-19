@@ -169,11 +169,11 @@ class CalendarStyle {
       shape: BoxShape.circle,
     ),
     this.todayTextStyle = const TextStyle(
-      color: const Color(0xFFFAFAFA),
+      color: const Color(0xFF171616),
       fontSize: 16.0,
     ), //
     this.todayDecoration = const BoxDecoration(
-      color: const Color(0xfff3c7b8),
+      color: const Color(0xfffff7f0),
       shape: BoxShape.circle,
     ),
     this.selectedTextStyle = const TextStyle(
