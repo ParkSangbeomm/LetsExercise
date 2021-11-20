@@ -39,7 +39,7 @@ class _FindgymPageState extends State<FindgymPage> {
             Padding(
               padding: EdgeInsets.fromLTRB(
                   MediaQuery.of(context).size.width * 0.05,
-                  0,
+                  MediaQuery.of(context).size.width * 0.05,
                   MediaQuery.of(context).size.width * 0.05,
                   0.0),
               child: Row(
@@ -96,9 +96,9 @@ class _FindgymPageState extends State<FindgymPage> {
             ),
             Padding(
               padding: EdgeInsets.fromLTRB(
-                  MediaQuery.of(context).size.width * 0.05,
                   0,
-                  MediaQuery.of(context).size.width * 0.05,
+                  0,
+                  0,
                   0.0),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.8,
