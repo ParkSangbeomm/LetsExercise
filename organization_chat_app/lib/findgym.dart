@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'locations.dart' as locations;
+//import 'locations.dart' as locations;
 import 'package:organization_chat_app/googlemap.dart';
 
 
