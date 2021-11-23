@@ -74,7 +74,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         const Text("닉네임"),
                         SizedBox(width: MediaQuery.of(context).size.width * 0.135),
                         SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.65,
+                          width: MediaQuery.of(context).size.width * 0.55,
                           child: TextField(
                             controller: nicknameController,
                             decoration: const InputDecoration(

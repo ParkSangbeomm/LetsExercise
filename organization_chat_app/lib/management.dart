@@ -220,7 +220,7 @@ class _friendsListState extends State<friendsList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: friends(name: '박상범',)
+      child: friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.delete, twoIcons: false),
     );
   }
 }
@@ -237,12 +237,12 @@ class _requestFriendsState extends State<requestFriends> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: friends(name: '박상범',)
+      child: friends(name: '박상범', icon1: Icons.check, icon2: Icons.close, twoIcons: true),
     );
   }
 }
 
-//친구 요청 메뉴
+//친구 찾기 메뉴
 class findFriends extends StatefulWidget {
   const findFriends ({Key? key}) : super(key: key);
 
@@ -254,60 +254,81 @@ class _findFriendsState extends State<findFriends> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: friends(name: '박상범',)
+        child: friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.person_add_alt_rounded, twoIcons: false),
     );
   }
 }
 
 class friends extends StatelessWidget {
   final String name;
-  friends({required this.name});
+  final bool twoIcons;
+  final IconData icon1;
+  final IconData icon2;
+  friends({required this.name, required this.icon1, required this.icon2, required this.twoIcons});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.topLeft,
-      margin: EdgeInsets.fromLTRB(
-          0.0,
-          0.0,
-          0.0,
-          MediaQuery.of(context).size.height * 0.01),
-      child: Row(children: [
-        Container(
-          margin: EdgeInsets.fromLTRB(
-              MediaQuery.of(context).size.width * 0.02,
-              0.0,
-              0.0,
-              0.0),
-          width: MediaQuery.of(context).size.width * 0.542,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: const Color(0xfffff7f0),
-          ),
-          child: Row(
-            // mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CircleAvatar(
-                radius: 20,
-                backgroundImage: AssetImage('img/profile.jpeg'),
-              ),
-              Container(
-                margin: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.05,
-                    0.0,
-                    MediaQuery.of(context).size.width * 0.09,
-                    0.0),
-                child: Text(
-                  this.name,
-                  style: TextStyle(
-                    color: Color(0xffffffff),
+    return Column(
+      children: [
+        SizedBox(height:13),
+        Row(
+          children: [
+            SizedBox(width: 13),
+            Container(
+              alignment: Alignment.topLeft,
+              margin: EdgeInsets.fromLTRB(
+                  0.0,
+                  0.0,
+                  0.0,
+                  MediaQuery.of(context).size.height * 0.01),
+              child: Row(children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(
+                      MediaQuery.of(context).size.width * 0.02,
+                      0.0,
+                      0.0,
+                      0.0),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: const Color(0xfffff7f0),
                   ),
-                ),
-              ),
-            ],
-          ),
-        )
-      ]),
+                  child: Row(
+                    // mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      CircleAvatar(
+                        radius: 20,
+                        backgroundImage: AssetImage('img/profile.jpeg'),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(
+                            MediaQuery.of(context).size.width * 0.05,
+                            0.0,
+                            MediaQuery.of(context).size.width * 0.09,
+                            0.0),
+                        child: Text(
+                          this.name,
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      if (twoIcons == true)
+                        IconButton(icon: Icon(icon1, color: const Color(
+                            0xff78b75b)), onPressed: () {},),
+                      if (twoIcons == true)
+                        IconButton(icon: Icon(icon2, color: const Color(0xffe49191)), onPressed: () {},)
+                      else
+                        IconButton(icon: Icon(icon2), onPressed: () {},),
+                    ],
+                  ),
+                )
+              ]),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

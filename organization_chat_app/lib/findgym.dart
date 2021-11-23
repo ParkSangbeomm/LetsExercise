@@ -4,6 +4,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'locations.dart' as locations;
 import 'package:organization_chat_app/googlemap.dart';
 
+import 'googlemap.dart';
+
 
 class ListGymPage extends StatefulWidget {
   @override
