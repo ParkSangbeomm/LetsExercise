@@ -4,6 +4,7 @@ import 'package:organization_chat_app/home.dart';
 import 'package:organization_chat_app/findgym.dart';
 import 'package:organization_chat_app/community.dart';
 import 'package:organization_chat_app/mypage.dart';
+import 'package:organization_chat_app/googlemap.dart';
 
 
 class ExerciseApp extends StatelessWidget {
@@ -18,7 +19,7 @@ class ExerciseApp extends StatelessWidget {
       routes: {
         '/bar' : (context) => Navigationbar(),
         '/home' : (context) => HomePage(),
-        '/findgym' : (context) => FindgymPage(),
+        '/findgym' : (context) => ListGymPage(),
         '/community' : (context) => CommunityPage(),
         '/myPage' : (context) => MyPage(),
       },
