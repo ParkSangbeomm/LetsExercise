@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'editprofile.dart';
+import 'management.dart';
+
 class MyPage extends StatefulWidget {
   @override
   State<MyPage> createState() => _MyPageState();
@@ -45,23 +48,27 @@ class _MyPageState extends State<MyPage> {
                 children: [
                     ElevatedButton(
                       onPressed: () {
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const EditProfilePage()),
+                        );
                       },
                         child: const Text("프로필 수정"),
-
                         // borderRadius: BorderRadius.circular(50),
                         style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(113, 36),
+                          fixedSize: const Size(115, 36),
                           primary: const Color(0xffedb9b9),
                           textStyle: const TextStyle(fontSize: 17, color: Colors.white),
                         ),                        // textStyle: TextStyle(fontSize: 17, color: Colors.white),
-
                     ),
                   const SizedBox(width:10),
 
                   ElevatedButton(
                     onPressed: () {
-
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ManagementPage()),
+                      );
                     },
                     child: const Text("친구 관리"),
 
