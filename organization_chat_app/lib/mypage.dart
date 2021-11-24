@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'editprofile.dart';
+import 'management.dart';
+
 class MyPage extends StatefulWidget {
   @override
   State<MyPage> createState() => _MyPageState();
@@ -69,7 +72,10 @@ class _MyPageState extends State<MyPage> {
                 children: [
                     ElevatedButton(
                       onPressed: () {
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const EditProfilePage()),
+                        );
                       },
                         child: const Text("프로필 수정"),
 
@@ -85,6 +91,10 @@ class _MyPageState extends State<MyPage> {
 
                   ElevatedButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ManagementPage()),
+                      );
                     },
                     child: const Text("친구 관리"),
 
@@ -208,7 +218,7 @@ class _MyPageState extends State<MyPage> {
               SizedBox(height:15),
               // 신체 변화 시작
               drawDivider(swidth: swidth, title: "신체 변화"),
-              
+
             ],
 
           )
@@ -252,14 +262,14 @@ class drawDivider extends StatelessWidget {
           ),
         ),
 
-        // 선
-        Container(
-          // margin: EdgeInsets.only(top: 17),
-          height: 2.0,
-          width: swidth*0.9-110,
-          color: const Color(0xffe49191),
-        )
-      ],
+      // 선
+      Container(
+        // margin: EdgeInsets.only(top: 17),
+        height: 2.0,
+        width: swidth*0.9-110,
+        color: const Color(0xffe49191),
+      )
+    ],
     );
   }
 }
