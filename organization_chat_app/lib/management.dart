@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:organization_chat_app/editprofile.dart';
 
 class ManagementPage extends StatefulWidget {
   const ManagementPage({Key? key}) : super(key: key);
@@ -11,7 +10,6 @@ class ManagementPage extends StatefulWidget {
 
 class _ManagementPageState extends State<ManagementPage> {
   @override
-  //final List<Widget> _screenList = [HomePage(), FindgymPage(),CommunityPage(), MyPage()];
   bool changeColor1 = false;
   bool changeColor2 = true;
   bool changeColor3 = true;
@@ -168,7 +166,7 @@ class _ManagementPageState extends State<ManagementPage> {
                                 Icon(
                                   Icons.search,
                                 ),
-                                Text("기록 찾기", style: TextStyle(
+                                Text("친구 찾기", style: TextStyle(
                                     fontSize: MediaQuery
                                         .of(context)
                                         .size
@@ -220,7 +218,7 @@ class _friendsListState extends State<friendsList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.delete, twoIcons: false),
+      child: friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.delete_outline, twoIcons: false),
     );
   }
 }
