@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'editprofile.dart';
 import 'management.dart';
@@ -14,6 +15,12 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     double swidth = MediaQuery.of(context).size.width;
     double sheight = MediaQuery.of(context).size.height;
+    final yearController = TextEditingController();
+    final monthController = TextEditingController();
+    final dayController = TextEditingController();
+    final weightController = TextEditingController();
+    final muscleController = TextEditingController();
+    final fatController = TextEditingController();
 
     return Scaffold(
       body: Padding(
@@ -83,7 +90,123 @@ class _MyPageState extends State<MyPage> {
                   const SizedBox(width:10),
                   ElevatedButton(
                     onPressed: () {
-
+                      Alert(
+                          context: context,
+                          //title: Text("기록 추가", style: const TextStyle(color: Color(0xffe49191))),
+                          content: Column(
+                            children: <Widget>[
+                              const Text("기록 추가", style: TextStyle(color: Color(0xffe49191), fontWeight: FontWeight.bold)),
+                              SizedBox(height: 25),
+                              Row(
+                                children: <Widget>[
+                                  const Text("날짜", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.07),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.125,
+                                    child: TextField(
+                                      controller: yearController,
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.all(0.0),
+                                        isDense: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(" 년  ", style: TextStyle(fontSize: 14)),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.125,
+                                    child: TextField(
+                                      controller: monthController,
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.all(0.0),
+                                        isDense: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(" 월  ", style: TextStyle(fontSize: 14)),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.125,
+                                    child: TextField(
+                                      controller: dayController,
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.all(0.0),
+                                        isDense: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text(" 일", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                              Row(
+                                children: <Widget>[
+                                  //SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+                                  const Text("체중", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.07),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.5,
+                                    child: TextField(
+                                      controller: weightController,
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.all(0.0),
+                                        isDense: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text("(kg)", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                              Row(
+                                children: <Widget>[
+                                  //SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+                                  const Text("골격근", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.04),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.5,
+                                    child: TextField(
+                                      controller: muscleController,
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.all(0.0),
+                                        isDense: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text("(kg)", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                              Row(
+                                children: <Widget>[
+                                  //SizedBox(width: MediaQuery.of(context).size.width * 0.03),
+                                  const Text("체중", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                  SizedBox(width: MediaQuery.of(context).size.width * 0.07),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width * 0.5,
+                                    child: TextField(
+                                      controller: fatController,
+                                      decoration: const InputDecoration(
+                                        contentPadding: EdgeInsets.all(0.0),
+                                        isDense: true,
+                                      ),
+                                    ),
+                                  ),
+                                  const Text("(kg)", style: TextStyle(fontSize: 14)),
+                                ],
+                              ),
+                              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                            ],
+                          ),
+                          buttons: [
+                            DialogButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text(
+                                "저장하기",
+                                style: TextStyle(color: Colors.white, fontSize: 20),
+                              ),
+                              color: const Color(0xffe49191),
+                              //border: BorderSide(style: BorderStyle(Color(0xffe49191)))
+                            )
+                          ]).show();
                     },
                     child: const Text("기록 추가"),
 
