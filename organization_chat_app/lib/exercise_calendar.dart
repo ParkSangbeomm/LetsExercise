@@ -103,130 +103,169 @@ class _exercise_calendarState extends State<exercise_calendar> {
   Widget build(BuildContext context) {
     return Expanded(
         child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-          child: Column(
-            children: [
-              TableCalendar<Event>(
-                firstDay: kFirstDay,
-                lastDay: kLastDay,
-                focusedDay: _focusedDay,
-                selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-                rangeStartDay: _rangeStart,
-                rangeEndDay: _rangeEnd,
-                calendarFormat: _calendarFormat,
-                rangeSelectionMode: _rangeSelectionMode,
-                eventLoader: _getEventsForDay,
-                startingDayOfWeek: StartingDayOfWeek.monday,
-                calendarStyle: CalendarStyle(
-                  // Use `CalendarStyle` to customize the UI
-                  outsideDaysVisible: false,
-                ),
-                onDaySelected: _onDaySelected,
-                // onRangeSelected: _onRangeSelected,
-                onFormatChanged: (format) {
-                  if (_calendarFormat != format) {
-                    setState(() {
-                      _calendarFormat = format;
-                    });
-                  }
-                },
-                onPageChanged: (focusedDay) {
-                  _focusedDay = focusedDay;
-                },
-              ),
-              const SizedBox(height: 8.0),
-              Padding(
-                padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.03,
-                    0,
-                    MediaQuery.of(context).size.width * 0.03,
-                    0),
-                child: Divider(
-                  thickness: 1,
-                  color: Colors.grey,
-                ),
-              ),
-              Expanded(
-                child: ValueListenableBuilder<List<Event>>(
-                  valueListenable: _selectedEvents,
-                  builder: (context, value, _) {
-                    if (value.length != 0) {
-                      return ListView.builder(
-                        itemCount: value.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.symmetric(
-                              horizontal: 12.0,
-                              vertical: 4.0,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25), topRight: Radius.circular(25))),
+      child: Column(
+        children: [
+          TableCalendar<Event>(
+            firstDay: kFirstDay,
+            lastDay: kLastDay,
+            focusedDay: _focusedDay,
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            rangeStartDay: _rangeStart,
+            rangeEndDay: _rangeEnd,
+            calendarFormat: _calendarFormat,
+            rangeSelectionMode: _rangeSelectionMode,
+            eventLoader: _getEventsForDay,
+            startingDayOfWeek: StartingDayOfWeek.monday,
+            calendarStyle: CalendarStyle(
+              // Use `CalendarStyle` to customize the UI
+              outsideDaysVisible: false,
+            ),
+            onDaySelected: _onDaySelected,
+            // onRangeSelected: _onRangeSelected,
+            onFormatChanged: (format) {
+              if (_calendarFormat != format) {
+                setState(() {
+                  _calendarFormat = format;
+                });
+              }
+            },
+            onPageChanged: (focusedDay) {
+              _focusedDay = focusedDay;
+            },
+          ),
+          const SizedBox(height: 8.0),
+          Padding(
+            padding: EdgeInsets.fromLTRB(
+                MediaQuery.of(context).size.width * 0.03,
+                0,
+                MediaQuery.of(context).size.width * 0.03,
+                0),
+            child: Divider(
+              thickness: 1,
+              color: Colors.grey,
+            ),
+          ),
+          Expanded(
+            child: ValueListenableBuilder<List<Event>>(
+              valueListenable: _selectedEvents,
+              builder: (context, value, _) {
+                if (value.length != 0) {
+                  return ListView.builder(
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 12.0,
+                          vertical: 4.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Color(0xfffff7f0),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '2시간  (20:00 - 22:00)',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xff363535),
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Text(
+                                          '등운동 : 바벨 로우, 친 업  10회 3 세트 복근운동 : AB슬라이드, 크런치, 레그레이즈 15회 3세트 ',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color(0xff939393),
+                                          ),
+                                        ),
+                                  ],
+                                )),
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(
+                                      10.0, 0.0, 0.0, 0.0),
+                                  width: 100,
+                                  child: InkWell(
+                                    child: Image.asset('img/testRecord.jpeg'),
+                                    // fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ],
                             ),
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: ListTile(
-                              onTap: () {
-                                print('${value[index]}');
-                              },
-                              title: Text('${value[index]}'),
-                            ),
-                          );
-                        },
-                      );
-                    } else {
-                      return Column(
-                        children: [
-                          SizedBox(
-                            height: 5, // 높이 추가
                           ),
-                          Text(
-                            "목표 체중까지 -3kg 남았어요! 🔥 ",
+                        ),
+
+                      );
+                    },
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      SizedBox(
+                        height: 5, // 높이 추가
+                      ),
+                      Text(
+                        "목표 체중까지 -3kg 남았어요! 🔥 ",
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 3, // 높이 추가
+                      ),
+                      Container(
+                        child: TextButton(
+                          onPressed: () => _showAlert(context),
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.fromLTRB(
+                                MediaQuery.of(context).size.width * 0.03,
+                                0,
+                                MediaQuery.of(context).size.width * 0.03,
+                                0),
+                            minimumSize: Size(70, 40),
+                            alignment: Alignment.center,
+                            backgroundColor: Color(0xffe49191),
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                  color: Color(0xffe49191), width: 2),
+                            ),
+                          ),
+                          child: const Text(
+                            '운동 일지 작성',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w600,
+                              color: Color(0xfff3f0f0),
                             ),
                           ),
-                          SizedBox(
-                            height: 3, // 높이 추가
-                          ),
-                          Container(
-                            child: TextButton(
-                              onPressed: () => _showAlert(context),
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.fromLTRB(
-                                    MediaQuery.of(context).size.width * 0.03,
-                                    0,
-                                    MediaQuery.of(context).size.width * 0.03,
-                                    0),
-                                minimumSize: Size(70, 40),
-                                alignment: Alignment.center,
-                                backgroundColor: Color(0xffe49191),
-                                shape: StadiumBorder(
-                                  side: BorderSide(
-                                      color: Color(0xffe49191), width: 2),
-                                ),
-                              ),
-                              child: const Text(
-                                '운동 일지 작성',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Color(0xfff3f0f0),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    };
-                  },
-                ),
-              ),
-            ],
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                ;
+              },
+            ),
           ),
-        ));
+        ],
+      ),
+    ));
   }
 
   Future getImage() async {
@@ -330,7 +369,7 @@ class _exercise_calendarState extends State<exercise_calendar> {
                         selectedTime.then((TimeofDay) {
                           setState(() {
                             _selectedFromTime =
-                            '${TimeofDay?.hour}:${TimeofDay?.minute}';
+                                '${TimeofDay?.hour}:${TimeofDay?.minute}';
                           });
                         });
                       }),
@@ -351,7 +390,7 @@ class _exercise_calendarState extends State<exercise_calendar> {
                         selectedTime.then((TimeofDay) {
                           setState(() {
                             _selectedToTime =
-                            '${TimeofDay?.hour}:${TimeofDay?.minute}';
+                                '${TimeofDay?.hour}:${TimeofDay?.minute}';
                           });
                         });
                       }),
@@ -408,7 +447,10 @@ class _exercise_calendarState extends State<exercise_calendar> {
             color: Color(0xffe49191),
             child: Text(
               "기록하기",
-              style: TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
             ),
           )
         ]).show();
