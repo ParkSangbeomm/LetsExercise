@@ -1,7 +1,3 @@
-// ignore_for_file: dead_code
-
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:organization_chat_app/exercise_calendar.dart';
@@ -144,13 +140,114 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  rankBox(),
+                  if(_rankIndex ==0 || _rankIndex ==2)
+                    rankBox(),
+                  if(_rankIndex == 1)
+                    rankNoFriendBox(),
                 ],
               ),
             ),
             exercise_calendar(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class rankNoFriendBox extends StatelessWidget {
+  const rankNoFriendBox({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+          0.0, MediaQuery.of(context).size.height * 0.01, 0.0, 0.0),
+      alignment: Alignment.topLeft,
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: 160,
+            alignment: Alignment.topLeft,
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 28,
+                  ),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage('img/profile.jpeg'),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Text('로운',
+                      style: TextStyle(color: Color(0xffffffff), fontSize: 15)),
+                  Text('5시간 / 3일 ',
+                      style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 15,
+                      )),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.6,
+            height: 145,
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            // decoration: BoxDecoration(
+            //   border: Border.all(
+            //     width: 1,
+            //     color: Colors.orange,
+            //   ),
+            // ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        Text('친구들과 경쟁하고 싶다면?',style: TextStyle(
+                          fontSize: 15,
+                          color: Color(0xffffffff),
+                        ),),
+                        TextButton(
+                          onPressed: () {
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                            minimumSize: Size(60, 25),
+                            alignment: Alignment.center,
+                            backgroundColor: Color(0xffffffff).withOpacity(0.5),
+                            shape: StadiumBorder(
+                              side: BorderSide(
+                                  color: Color(0xffffffff).withOpacity(0.5), width: 0),
+                            ),
+                          ),
+                          child: const Text(
+                            '친구 추가하기',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: Color(0xffffffff),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+
+                ],
+              ),
+          ),
+
+        ],
       ),
     );
   }
@@ -200,6 +297,7 @@ class rankBox extends StatelessWidget {
           ),
           Container(
             height: 145,
+            width: MediaQuery.of(context).size.width * 0.6,
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
