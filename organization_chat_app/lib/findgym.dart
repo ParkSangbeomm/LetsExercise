@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'locations.dart' as locations;
 import 'package:organization_chat_app/googlemap.dart';
+import 'package:organization_chat_app/register_gym.dart';
 
 import 'googlemap.dart';
 
@@ -53,7 +54,7 @@ class _ListGymPageState extends State<ListGymPage> {
                           children: <Widget>[
                             GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterGym()));
                                 },
                                 child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.9,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,)),
                             Column(
@@ -80,121 +81,6 @@ class _ListGymPageState extends State<ListGymPage> {
       ),
 
       //resizeToAvoidBottomInset: false,
-    );
-  }
-}
-
-class DetailGym extends StatefulWidget {
-  @override
-  State<DetailGym> createState() => _DetailGym();
-}
-
-class _DetailGym extends State<DetailGym> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: Column(
-          children: [
-            Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
-            Column(
-              children: [
-                timeColumn(),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container timeColumn() {
-    return Container(
-      child: Column(
-                        children: [
-                          Text('운영시간'),
-                          Text('[평일] 06:00 ~ :23:00'),
-                          Text('[주말] 06:00 ~ :23:00'),
-                          Text('[공휴일] 06:00 ~ :23:00'),
-                          Text('[휴관일] 06:00 ~ :23:00'),
-                          Divider(color: Colors.black, thickness : 1.0)
-                        ],
-                      ),
-    );
-  }
-
-  Container programColumn() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container machineColumn() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container contact() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container facilities() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container location() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
     );
   }
 }
