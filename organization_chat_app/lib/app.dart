@@ -4,7 +4,8 @@ import 'package:organization_chat_app/home.dart';
 import 'package:organization_chat_app/findgym.dart';
 import 'package:organization_chat_app/community.dart';
 import 'package:organization_chat_app/mypage.dart';
-import 'package:organization_chat_app/googlemap.dart';
+
+import 'login.dart';
 
 
 class ExerciseApp extends StatelessWidget {
@@ -14,15 +15,15 @@ class ExerciseApp extends StatelessWidget {
     return MaterialApp(
       title: 'team25',
       home: Navigationbar(),
-      initialRoute: '/bar',
+      initialRoute: '/login',
       // onGenerateRoute: _getRoute,
       routes: {
+        '/login' : (context) => LoginPage(),
         '/bar' : (context) => Navigationbar(),
         '/home' : (context) => HomePage(),
         '/findgym' : (context) => ListGymPage(),
         '/community' : (context) => CommunityPage(),
         '/myPage' : (context) => MyPage(),
-
       },
     );
   }
