@@ -1,18 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:organization_chat_app/events_example.dart';
-import 'package:organization_chat_app/mypage.dart';
-import 'package:organization_chat_app/src/table_calendar.dart';
-import 'package:organization_chat_app/table_calendar.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:organization_chat_app/exercise_calendar.dart';
 
-// import 'package:table_calendar/table_calendar.dart';
-import '../utils.dart';
-import 'src/table_calendar.dart';
-import 'table_calendar.dart';
 
 int _rankIndex = 0;
-
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -149,7 +140,10 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  rankBox(),
+                  if(_rankIndex ==0 || _rankIndex ==2)
+                    rankBox(),
+                  if(_rankIndex == 1)
+                    rankNoFriendBox(),
                 ],
               ),
             ),
@@ -157,250 +151,105 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      // body: Center(
-      //   child: Text('Main page',style: TextStyle(color: Color(0xff383434))),
-      // )
     );
   }
 }
 
-class exercise_calendar extends StatefulWidget {
-  const exercise_calendar({
+class rankNoFriendBox extends StatelessWidget {
+  const rankNoFriendBox({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<exercise_calendar> createState() => _exercise_calendarState();
-}
-
-class _exercise_calendarState extends State<exercise_calendar> {
-  late final ValueNotifier<List<Event>> _selectedEvents;
-  CalendarFormat _calendarFormat = CalendarFormat.month;
-  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
-      .toggledOff; // Can be toggled on/off by longpressing a date
-  DateTime _focusedDay = DateTime.now();
-  DateTime? _selectedDay;
-  DateTime? _rangeStart;
-  DateTime? _rangeEnd;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _selectedDay = _focusedDay;
-    _selectedEvents = ValueNotifier(_getEventsForDay(_selectedDay!));
-  }
-
-  @override
-  void dispose() {
-    _selectedEvents.dispose();
-    super.dispose();
-  }
-
-  List<Event> _getEventsForDay(DateTime day) {
-    // Implementation example
-    return kEvents[day] ?? [];
-  }
-
-  List<Event> _getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
-    final days = daysInRange(start, end);
-
-    return [
-      for (final d in days) ..._getEventsForDay(d),
-    ];
-  }
-
-  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
-    if (!isSameDay(_selectedDay, selectedDay)) {
-      setState(() {
-        _selectedDay = selectedDay;
-        _focusedDay = focusedDay;
-        _rangeStart = null; // Important to clean those
-        _rangeEnd = null;
-        _rangeSelectionMode = RangeSelectionMode.toggledOff;
-      });
-
-      _selectedEvents.value = _getEventsForDay(selectedDay);
-    }
-  }
-
-  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
-    setState(() {
-      _selectedDay = null;
-      _focusedDay = focusedDay;
-      _rangeStart = start;
-      _rangeEnd = end;
-      _rangeSelectionMode = RangeSelectionMode.toggledOn;
-    });
-
-    // `start` or `end` could be null
-    if (start != null && end != null) {
-      _selectedEvents.value = _getEventsForRange(start, end);
-    } else if (start != null) {
-      _selectedEvents.value = _getEventsForDay(start);
-    } else if (end != null) {
-      _selectedEvents.value = _getEventsForDay(end);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25), topRight: Radius.circular(25))),
-      child: Column(
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+          0.0, MediaQuery.of(context).size.height * 0.01, 0.0, 0.0),
+      alignment: Alignment.topLeft,
+      child: Row(
         children: [
-          TableCalendar<Event>(
-            firstDay: kFirstDay,
-            lastDay: kLastDay,
-            focusedDay: _focusedDay,
-            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
-            rangeStartDay: _rangeStart,
-            rangeEndDay: _rangeEnd,
-            calendarFormat: _calendarFormat,
-            rangeSelectionMode: _rangeSelectionMode,
-            eventLoader: _getEventsForDay,
-            startingDayOfWeek: StartingDayOfWeek.monday,
-            calendarStyle: CalendarStyle(
-              // Use `CalendarStyle` to customize the UI
-              outsideDaysVisible: false,
-            ),
-            onDaySelected: _onDaySelected,
-            onRangeSelected: _onRangeSelected,
-            onFormatChanged: (format) {
-              if (_calendarFormat != format) {
-                setState(() {
-                  _calendarFormat = format;
-                });
-              }
-            },
-            onPageChanged: (focusedDay) {
-              _focusedDay = focusedDay;
-            },
-          ),
-          const SizedBox(height: 8.0),
-          Padding(
-            padding: EdgeInsets.fromLTRB(
-                MediaQuery.of(context).size.width * 0.03,
-                0,
-                MediaQuery.of(context).size.width * 0.03,
-                0),
-            child: Divider(
-              thickness: 1,
-              color: Colors.grey,
+          Container(
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: 160,
+            alignment: Alignment.topLeft,
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 28,
+                  ),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage('img/profile.jpeg'),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Text('로운',
+                      style: TextStyle(color: Color(0xffffffff), fontSize: 15)),
+                  Text('5시간 / 3일 ',
+                      style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 15,
+                      )),
+                ],
+              ),
             ),
           ),
-          Expanded(
-            child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                if (value.length != 0) {
-                  return ListView.builder(
-                    itemCount: value.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(
-                          horizontal: 12.0,
-                          vertical: 4.0,
-                        ),
-                        decoration: BoxDecoration(
-                          border: Border.all(),
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: ListTile(
-                          onTap: () => print('${value[index]}'),
-                          title: Text('${value[index]}'),
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 5, // 높이 추가
-                      ),
-                      Text(
-                        "목표 체중까지 -3kg 남았어요! 🔥 ",
-                        style: TextStyle(
+          Container(
+            width: MediaQuery.of(context).size.width * 0.6,
+            height: 145,
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            // decoration: BoxDecoration(
+            //   border: Border.all(
+            //     width: 1,
+            //     color: Colors.orange,
+            //   ),
+            // ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
+                children: [
+                  Container(
+                    child: Column(
+                      children: [
+                        Text('친구들과 경쟁하고 싶다면?',style: TextStyle(
                           fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 3, // 높이 추가
-                      ),
-                      Container(
-                        child: TextButton(
+                          color: Color(0xffffffff),
+                        ),),
+                        TextButton(
                           onPressed: () {
-                            Alert(
-                                context: context,
-                                title: "LOGIN",
-                                content: Column(
-                                  children: <Widget>[
-                                    TextField(
-                                      decoration: InputDecoration(
-                                        icon: Icon(Icons.account_circle),
-                                        labelText: 'Username',
-                                      ),
-                                    ),
-                                    TextField(
-                                      obscureText: true,
-                                      decoration: InputDecoration(
-                                        icon: Icon(Icons.lock),
-                                        labelText: 'Password',
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                buttons: [
-                                  DialogButton(
-                                    onPressed: () => Navigator.pop(context),
-                                    child: Text(
-                                      "LOGIN",
-                                      style: TextStyle(color: Colors.white, fontSize: 20),
-                                    ),
-                                  )
-                                ]).show();
                           },
                           style: TextButton.styleFrom(
-                            padding: EdgeInsets.fromLTRB(
-                                MediaQuery.of(context).size.width * 0.03,
-                                0,
-                                MediaQuery.of(context).size.width * 0.03,
-                                0),
-                            minimumSize: Size(70, 40),
+                            padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                            minimumSize: Size(60, 25),
                             alignment: Alignment.center,
-                            backgroundColor: Color(0xffe49191),
+                            backgroundColor: Color(0xffffffff).withOpacity(0.5),
                             shape: StadiumBorder(
                               side: BorderSide(
-                                  color: Color(0xffe49191), width: 2),
+                                  color: Color(0xffffffff).withOpacity(0.5), width: 0),
                             ),
                           ),
                           child: const Text(
-                            '운동 일지 작성',
+                            '친구 추가하기',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: Color(0xfff3f0f0),
+                              color: Color(0xffffffff),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                }
-                ;
-              },
-            ),
+                      ],
+                    ),
+                  )
+
+                ],
+              ),
           ),
+
         ],
       ),
-    ));
+    );
   }
 }
 
@@ -448,6 +297,7 @@ class rankBox extends StatelessWidget {
           ),
           Container(
             height: 145,
+            width: MediaQuery.of(context).size.width * 0.6,
             margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
             child: SingleChildScrollView(
               child: Column(
