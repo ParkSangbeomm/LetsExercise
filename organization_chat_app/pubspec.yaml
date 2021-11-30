@@ -38,7 +38,8 @@ dependencies:
   intl: ^0.17.0
   simple_gesture_detector: ^0.2.0
   rflutter_alert: ^2.0.4
-  image_picker: ^0.7.5
+  image_picker: ^0.8.4
+#  image_picker: ^0.7.5
 
 
 dev_dependencies:
