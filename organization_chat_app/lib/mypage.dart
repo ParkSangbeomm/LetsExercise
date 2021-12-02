@@ -85,14 +85,12 @@ class _MyPageState extends State<MyPage> {
                         );
                       },
                         child: const Text("프로필 수정"),
-
                         // borderRadius: BorderRadius.circular(50),
                         style: ElevatedButton.styleFrom(
                           fixedSize: const Size(115, 36),
                           primary: const Color(0xffedb9b9),
                           textStyle: const TextStyle(fontSize: 17, color: Colors.white),
                         ),                        // textStyle: TextStyle(fontSize: 17, color: Colors.white),
-
                     ),
                   const SizedBox(width:10),
 
