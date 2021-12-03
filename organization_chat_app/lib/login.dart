@@ -1,15 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:organization_chat_app/home.dart';
 
+bool? isNew = true;
 
-
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  Future<void> init() async {
+    await Firebase.initializeApp();
+  }
 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +77,30 @@ class LoginPage extends StatelessWidget {
                       //   //Navigator.pushNamed(context, '/home');
                       // });
                     },
-                    child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
+                    child: TextButton(
+                      child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
+                      onPressed: () {
+                        FirebaseRequest().signInWithGoogle().
+                        then((result){
+                          if(result != null) {
+                            if (isNew == true) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()),
+                              );
+                            }
+                            else{
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()),
+                              );
+                            }
+                          }
+                        });
+                      },
+                    ),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff4A6ADC),
                       padding: EdgeInsets.fromLTRB(96, 0, 96, 0),
@@ -109,4 +142,43 @@ class LoginPage extends StatelessWidget {
   //   // Once signed in, return the UserCredential
   //   return await FirebaseAuth.instance.signInWithCredential(credential);
   // }
+}
+
+class FirebaseRequest{
+//SIGN WITH GOOGLE
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  FirebaseAuth get auth => _auth;
+
+  Future<User?> signInWithGoogle() async {
+    try{
+      await _googleSignIn.signOut();
+      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      final UserCredential authResult =
+      await _auth.signInWithCredential(credential);
+
+      if (authResult.additionalUserInfo!.isNewUser) {
+        isNew = true;
+      }
+      else{
+        isNew = false;
+      }
+
+      return _auth.currentUser;
+    }on FirebaseAuthException catch (e){
+      throw e;
+    }
+  }
+
+  Future <void> logout() async{
+    await _googleSignIn.signOut();
+    await _auth.signOut();
+  }
 }
