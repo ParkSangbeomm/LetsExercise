@@ -55,52 +55,27 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     onPressed:() {
-                      // signInWithGoogle().then((value) async {
-                      //   UserCredential userCredential = value;
-                      //   final uid = userCredential.user!.uid;
-                      //
-                      //   FirebaseFirestore.instance.collection("Users").doc(uid).get()
-                      //       .then((doc) {
-                      //     if(doc.exists) {
-                      //       //Navigator.pushNamed(context, '/home');
-                      //       Navigator.push(
-                      //         context,
-                      //         MaterialPageRoute(
-                      //           builder: (context) => HomePage(),
-                      //           //MainPage(),
-                      //         ),
-                      //       );
-                      //     } else {
-                      //       Navigator.pushNamed(context, '/signUpMap', arguments: userCredential.user );
-                      //     }
-                      //   });
-                      //   //Navigator.pushNamed(context, '/home');
-                      // });
-                    },
-                    child: TextButton(
-                      child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
-                      onPressed: () {
-                        FirebaseRequest().signInWithGoogle().
-                        then((result){
-                          if(result != null) {
-                            if (isNew == true) {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()),
-                              );
-                            }
-                            else{
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()),
-                              );
-                            }
+                      FirebaseRequest().signInWithGoogle().
+                      then((result){
+                        if(result != null) {
+                          if (isNew == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
                           }
-                        });
-                      },
-                    ),
+                          else{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
+                          }
+                        }
+                      });
+                    },
+                    child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff4A6ADC),
                       padding: EdgeInsets.fromLTRB(96, 0, 96, 0),
