@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:organization_chat_app/home.dart';
+
+
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +45,27 @@ class LoginPage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed:() {
-                      Navigator.pop(context);
+                      // signInWithGoogle().then((value) async {
+                      //   UserCredential userCredential = value;
+                      //   final uid = userCredential.user!.uid;
+                      //
+                      //   FirebaseFirestore.instance.collection("Users").doc(uid).get()
+                      //       .then((doc) {
+                      //     if(doc.exists) {
+                      //       //Navigator.pushNamed(context, '/home');
+                      //       Navigator.push(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //           builder: (context) => HomePage(),
+                      //           //MainPage(),
+                      //         ),
+                      //       );
+                      //     } else {
+                      //       Navigator.pushNamed(context, '/signUpMap', arguments: userCredential.user );
+                      //     }
+                      //   });
+                      //   //Navigator.pushNamed(context, '/home');
+                      // });
                     },
                     child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
                     style: ElevatedButton.styleFrom(
@@ -62,4 +88,25 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+  // Future<UserCredential> signInWithGoogle() async {
+  //   // Trigger the authentication flow
+  //   final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+  //
+  //   // Obtain the auth details from the request
+  //   final GoogleSignInAuthentication googleAuth = await googleUser
+  //       .authentication;
+  //
+  //   // Create a new credential
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth.accessToken,
+  //     idToken: googleAuth.idToken,
+  //   );
+  //
+  //   final UserCredential authResult = await FirebaseAuth.instance
+  //       .signInWithCredential(credential);
+  //
+  //   // Once signed in, return the UserCredential
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
 }
