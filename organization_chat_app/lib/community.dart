@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:organization_chat_app/writing.dart';
-
-int _rankIndex = 0;
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -11,288 +8,142 @@ class CommunityPage extends StatefulWidget {
 class _CommunityPageState extends State<CommunityPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.03, MediaQuery.of(context).size.height*0.03, MediaQuery.of(context).size.width*0.03, 0.0),
-        child: Column(
+        body: Column(
           children: [
             Container(
-              child: Row(
-                children: [
-                  Container(
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _rankIndex = 0;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.center,
-                        shape: _rankIndex == 0
-                            ? StadiumBorder(
-                          side: BorderSide(
-                              color: Colors.white, width: 2),
-                        )
-                            : StadiumBorder(
-                            side: BorderSide(
-                                color: Colors.transparent, width: 2)),
-                      ),
-                      child: const Text(
-                        '자유게시판',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.width * 0.09,
-                        0.0,
-                        0,
-                        0.0),
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _rankIndex = 1;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.center,
-                        shape: _rankIndex == 1
-                            ? StadiumBorder(
-                          side: BorderSide(
-                              color: Colors.white, width: 2),
-                        )
-                            : StadiumBorder(
-                            side: BorderSide(
-                                color: Colors.transparent, width: 2)),
-                      ),
-                      child: const Text(
-                        '루틴자랑',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.width * 0.09,
-                        0.0,
-                        0,
-                        0.0),
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _rankIndex = 2;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.center,
-                        shape: _rankIndex == 2
-                            ? StadiumBorder(
-                          side: BorderSide(
-                              color: Colors.white, width: 2),
-                        )
-                            : StadiumBorder(
-                            side: BorderSide(
-                                color: Colors.transparent, width: 2)),
-                      ),
-                      child: const Text(
-                        '식단인증',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.width * 0.09,
-                        0.0,
-                        0,
-                        0.0),
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _rankIndex = 2;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.center,
-                        shape: _rankIndex == 2
-                            ? StadiumBorder(
-                          side: BorderSide(
-                              color: Colors.white, width: 2),
-                        )
-                            : StadiumBorder(
-                            side: BorderSide(
-                                color: Colors.transparent, width: 2)),
-                      ),
-                      child: const Text(
-                        '내 게시글',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Divider(color: Colors.black, thickness: 0.5),
-            SizedBox(
-              child :Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+              child: Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 10.0,0),
-                    child: ElevatedButton(
-
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Writing()));
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              "글 작성하기",
-                              style: TextStyle(color: Colors.black, fontSize: 10),
-                            ),
-                          ],
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white70,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                        )
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 0.0 ,horizontal: 15.0),
+                    child: Image.asset('img/gym.jpeg', width: MediaQuery
+                        .of(context)
+                        .size
+                        .width-15,),
                   ),
+                  Positioned(child: makeText(
+                      '마초맨 아령들고있는 사', width: 340, fontSize: 17.0),
+                    top: 190,),
                 ],
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                itemCount: 6,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, int index) {
-                  return Card(
-                    shadowColor: Colors.black,
-                    clipBehavior: Clip.antiAlias,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: const CircleAvatar(
-                                  radius: 15,
-                                  backgroundImage: AssetImage('img/profile.jpeg'),
-                                ),
-                              ),
-                              Text("류준열"),
-                              SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
-                              SizedBox(
-                                width: 94,
-                                height: 30,
-                                child: ElevatedButton(
-                                  onPressed: (){},
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.thumb_up_outlined, size: 10,),
-                                      Text(
-                                        " 좋아요 100",
-                                        style: TextStyle(color: Colors.white, fontSize: 10),
-                                      ),
-
-                                    ],
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: const Color(0xffe49191),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(50)
-                                    ),
-                                  )
-                                ),
-                              ),
-                              SizedBox(width: 20,),
-                              SizedBox(
-                                width: 80,
-                                height: 30,
-                                child: ElevatedButton(
-                                  onPressed: (){},
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.chat_bubble_outline, size: 10,),
-                                      Text(
-                                        " 댓글 30",
-                                        style: TextStyle(color: Colors.white, fontSize: 10),
-                                      ),
-                                    ],
-                                  ),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: const Color(0xffe49191),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50)
-                                      ),
-                                    )
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              //Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterGym()));
-                            },
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
-                                ),
-                              ],
-                            )),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              alignment : Alignment.centerLeft,
-                              child: Text("This is explanation")),
-                        )
-                      ],
-                    ),
-                  );
-                },
+            Divider(
+              height: 10.0,
+              color: Colors.white,
+              thickness: 10.0,
+              endIndent: 30.0,
+            ),
+            Container(
+              width:  MediaQuery.of(context).size.width * 1.0,
+              height: MediaQuery.of(context).size.height * 0.03,
+              color: Colors.white,
+              padding: EdgeInsets.fromLTRB(25, 0, 20, 0),
+              child: Text('잡담게시판'
+                ,style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: const Color(0xffE49191),
+                ),
               ),
             ),
+            Divider(
+              height: 10.0,
+              color: Colors.white,
+              thickness: 10.0,
+              endIndent: 30.0,
+            ),
+            Container(
+              width:  MediaQuery.of(context).size.width * 1.0,
+              height: MediaQuery.of(context).size.height * 0.075,
+              color: Colors.white,
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text('좋은 날... 좋은 사람들과 함께 운동.. \n너어무 행복'
+                ,style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Divider(
+              height: 10.0,
+              color: Colors.white,
+              thickness: 10.0,
+              endIndent: 30.0,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width * 1.0,
+              height: MediaQuery.of(context).size.height * 0.15,
+              color: Colors.white,
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text('오늘 승언이랑 운동했다.\n등 운동을 빡세게 했다.\n오늘 드디어 레풀다운 80키로를 찍었다.'
+                  '\n기념으로 같이 샐러드를 먹었다\n얼른 목표 찍고 치킨 먹고 싶다!!!!\n다음에도 같이 하자 승언아!!!'
+                ,style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 13,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Divider(
+              height: 10.0,
+              color: Colors.white,
+              thickness: 10.0,
+              endIndent: 30.0,
+            ),
+            Container(
+              width:  MediaQuery.of(context).size.width * 1.0,
+              height: MediaQuery.of(context).size.height * 0.015,
+              color: const Color(0xffFFF7F0),
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+            ),
+            Divider(
+              height: 10.0,
+              color: Colors.white,
+              thickness: 10.0,
+              endIndent: 30.0,
+            ),
+            Container(
+              width:  MediaQuery.of(context).size.width * 1.0,
+              height: MediaQuery.of(context).size.height * 0.075,
+              color: Colors.white,
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Text('멋집니다 화이팅이에요!'
+                ,style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            Row(
+              children: [
+                Text('서울 중구 저동1가'
+                  ,style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                    color: Colors.black,
+                  ),),
+                SizedBox(width:MediaQuery.of(context).size.width*0.6,),
+                Text('0.8km'
+                  ,style: TextStyle(
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 10,
+                    color: Colors.black,
+                  ),)
+              ],
+            ),
           ],
-        ),
-      ),
+        )
+    );
+  }
+
+  Widget makeText(String title, {double? width, double? fontSize}) {
+    return Container(
+      child: Center(child: Text(title, style: TextStyle(fontSize: fontSize,
+          color: Colors.white,
+          fontWeight: FontWeight.bold),),),
+      width: width,
     );
   }
 }
