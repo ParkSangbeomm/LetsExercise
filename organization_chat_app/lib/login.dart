@@ -1,9 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-class LoginPage extends StatelessWidget {
+import 'package:organization_chat_app/home.dart';
+
+bool? isNew = true;
+
+class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
+  Future<void> init() async {
+    await Firebase.initializeApp();
+  }
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,7 +55,25 @@ class LoginPage extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed:() {
-                      Navigator.pop(context);
+                      FirebaseRequest().signInWithGoogle().
+                      then((result){
+                        if(result != null) {
+                          if (isNew == true) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
+                          }
+                          else{
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );
+                          }
+                        }
+                      });
                     },
                     child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
                     style: ElevatedButton.styleFrom(
@@ -61,5 +95,65 @@ class LoginPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  // Future<UserCredential> signInWithGoogle() async {
+  //   // Trigger the authentication flow
+  //   final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+  //
+  //   // Obtain the auth details from the request
+  //   final GoogleSignInAuthentication googleAuth = await googleUser
+  //       .authentication;
+  //
+  //   // Create a new credential
+  //   final credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth.accessToken,
+  //     idToken: googleAuth.idToken,
+  //   );
+  //
+  //   final UserCredential authResult = await FirebaseAuth.instance
+  //       .signInWithCredential(credential);
+  //
+  //   // Once signed in, return the UserCredential
+  //   return await FirebaseAuth.instance.signInWithCredential(credential);
+  // }
+}
+
+class FirebaseRequest{
+//SIGN WITH GOOGLE
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+  FirebaseAuth get auth => _auth;
+
+  Future<User?> signInWithGoogle() async {
+    try{
+      await _googleSignIn.signOut();
+      final GoogleSignInAccount? googleSignInAccount = await _googleSignIn.signIn();
+      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount!.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+
+      final UserCredential authResult =
+      await _auth.signInWithCredential(credential);
+
+      if (authResult.additionalUserInfo!.isNewUser) {
+        isNew = true;
+      }
+      else{
+        isNew = false;
+      }
+
+      return _auth.currentUser;
+    }on FirebaseAuthException catch (e){
+      throw e;
+    }
+  }
+
+  Future <void> logout() async{
+    await _googleSignIn.signOut();
+    await _auth.signOut();
   }
 }
