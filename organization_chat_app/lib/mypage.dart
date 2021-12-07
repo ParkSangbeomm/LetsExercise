@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
+
 
 import 'editprofile.dart';
 import 'management.dart';
@@ -82,22 +87,30 @@ class _MyPageState extends State<MyPage> {
               drawDivider(swidth: swidth, title: "프로필 정보"),
               const SizedBox(height: 15),
               // 프로필 정보 (사진, 이름, 키, 몸무게)
-              Row(
-                children: [
-                  const CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage('img/profile.jpeg'),
-                  ),
-                  SizedBox(width: 15),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("류준열", style: TextStyle(fontSize: 20)),
-                      Text("1990. 10. 10", style: TextStyle(fontSize: 13, color: Color(0xff4c4c4c))),
-                      Text("183cm, 80kg", style: TextStyle(fontSize: 13, color: Color(0xff4c4c4c))),
-                    ]
-                  )
-                ],
+              StreamBuilder<Object>(
+                stream: FirebaseFirestore.instance
+                    .collection('UserDemo')
+                    .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid,)
+                    .snapshots(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                  return Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: AssetImage('img/profile.jpeg'),
+                      ),
+                      SizedBox(width: 15),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text("류준열", style: TextStyle(fontSize: 20)),
+                          Text("1990. 10. 10", style: TextStyle(fontSize: 14, color: Color(0xff4c4c4c))),
+                          Text("183cm, 80kg", style: TextStyle(fontSize: 14, color: Color(0xff4c4c4c))),
+                        ]
+                      )
+                    ],
+                  );
+                }
               ),
               const SizedBox(height: 13),
               // 버튼 3개
