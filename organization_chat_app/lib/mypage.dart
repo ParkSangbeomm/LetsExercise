@@ -75,7 +75,7 @@ class _MyPageState extends State<MyPage> {
 
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(swidth*0.05, sheight*0.05, swidth*0.05, 0.0),
+        padding: EdgeInsets.fromLTRB(swidth*0.05, 0.2, swidth*0.05, 0.0),
           child: ListView(
             // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
