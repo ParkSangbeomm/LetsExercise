@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:intl/intl.dart';
 
 import 'editprofile.dart';
 import 'management.dart';
@@ -11,6 +13,31 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
+  late List<WeightData> _chart1Data;
+  late List<MuscleData> _chart2Data;
+  late List<FatData> _chart3Data;
+
+
+  @override
+  void initState(){
+    _chart1Data = getChart1Data();
+    _chart2Data = getChart2Data();
+    _chart3Data = getChart3Data();
+
+    super.initState();
+  }
+
+  double? maxValue(List<double> arr){
+    double max = arr.elementAt(0);
+
+    for(int i=1; i < arr.length; i++){
+      if(max < arr.elementAt(i))
+        max = arr.elementAt(i);
+    }
+    return max;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     double swidth = MediaQuery.of(context).size.width;
@@ -49,15 +76,15 @@ class _MyPageState extends State<MyPage> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.fromLTRB(swidth*0.05, sheight*0.05, swidth*0.05, 0.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: ListView(
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               drawDivider(swidth: swidth, title: "프로필 정보"),
               const SizedBox(height: 15),
               // 프로필 정보 (사진, 이름, 키, 몸무게)
               Row(
                 children: [
-                  CircleAvatar(
+                  const CircleAvatar(
                     radius: 40,
                     backgroundImage: AssetImage('img/profile.jpeg'),
                   ),
@@ -339,6 +366,120 @@ class _MyPageState extends State<MyPage> {
               SizedBox(height:15),
               // 신체 변화 시작
               drawDivider(swidth: swidth, title: "신체 변화"),
+              SizedBox(height:10),
+
+              // 체중 그래프
+              Container(
+                  // color: const Color(0xff808080),
+                  height: 200,
+                  child: SfCartesianChart(
+                    title: ChartTitle(
+                      text: '체중 (kg)',
+                      alignment: ChartAlignment.near,
+                      // backgroundColor: const Color(0xff808080),
+                    ),
+                    primaryXAxis: DateTimeCategoryAxis(dateFormat: DateFormat.Md()),
+                    series: <ChartSeries>[
+                      LineSeries<WeightData, DateTime>(
+                          color: const Color(0xffd0d0d0),
+                          width: 5,
+                          dataSource: _chart1Data,
+                          xValueMapper: (WeightData weight, _) => weight.time,
+                          yValueMapper: (WeightData weight, _) => weight.weight,
+                          dataLabelSettings: const DataLabelSettings(isVisible: true),
+                          markerSettings: const MarkerSettings(
+                              borderColor: Color(0xff00234c),
+                              color: Color(0xff00234c),
+                              isVisible: true,
+                              shape: DataMarkerType.circle,
+
+                          )
+                      ),
+                    ],
+                    // TODO: Axis format 설정
+                    primaryYAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.none, visibleMaximum: 75),
+                  )
+              ),
+
+              // 골격근량 그래프
+              Container(
+                // color: const Color(0xff808080),
+                  height: 200,
+                  child: SfCartesianChart(
+                    title: ChartTitle(
+                      text: '골격근 (kg)',
+                      alignment: ChartAlignment.near,
+                      // backgroundColor: const Color(0xff808080),
+                    ),
+                    primaryXAxis: DateTimeCategoryAxis(dateFormat: DateFormat.Md()),
+                    series: <ChartSeries>[
+                      LineSeries<MuscleData, DateTime>(
+                          color: const Color(0xffd0d0d0),
+                          width: 5,
+                          dataSource: _chart2Data,
+                          xValueMapper: (MuscleData weight, _) => weight.time,
+                          yValueMapper: (MuscleData weight, _) => weight.weight,
+                          dataLabelSettings: const DataLabelSettings(isVisible: true),
+                          markerSettings: const MarkerSettings(
+                            borderColor: Color(0xff00234c),
+                            color: Color(0xff00234c),
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+
+                          )
+                      ),
+                    ],
+                    // TODO: Axis format 설정
+                    primaryYAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.none, ),
+                  )
+              ),
+
+              Container(
+                // color: const Color(0xff808080),
+                  height: 200,
+                  child: SfCartesianChart(
+                    title: ChartTitle(
+                      text: '체지방량 (kg)',
+                      alignment: ChartAlignment.near,
+                      // backgroundColor: const Color(0xff808080),
+                    ),
+                    primaryXAxis: DateTimeCategoryAxis(dateFormat: DateFormat.Md()),
+
+                    series: <ChartSeries>[
+                      LineSeries<FatData, DateTime>(
+                          color: const Color(0xffd0d0d0),
+                          width: 5,
+                          dataSource: _chart3Data,
+                          xValueMapper: (FatData weight, _) => weight.time,
+                          yValueMapper: (FatData weight, _) => weight.weight,
+                          dataLabelSettings: const DataLabelSettings(isVisible: true),
+                          markerSettings: const MarkerSettings(
+                            borderColor: Color(0xff00234c),
+                            color: Color(0xff00234c),
+                            isVisible: true,
+                            shape: DataMarkerType.circle,
+
+                          )
+                      ),
+                    ],
+                    // TODO: Axis format 설정
+                    primaryYAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.none),
+                  )
+              ),
+
+              // SizedBox(height:10),
+              // // 골격근량 그래프
+              // Container(
+              //   height: 200,
+              //   child:
+              //       SfCartesianChart(),
+              // ),
+              // SizedBox(height:10),
+              // // 체지방량 그래프
+              // Container(
+              //     height: 200,
+              //     child: SfCartesianChart()
+              // )
 
             ],
 
@@ -346,10 +487,38 @@ class _MyPageState extends State<MyPage> {
 
 
       ));
-
-
   }
 
+  List<WeightData> getChart1Data(){
+    final List<WeightData> chart1Data = [
+      WeightData(DateTime(2021, 1, 27), 68.7),
+      WeightData(DateTime(2021, 2, 26), 68.9),
+      WeightData(DateTime(2021, 6, 23), 72.3),
+      WeightData(DateTime(2021, 6, 25), 72.4),
+      WeightData(DateTime(2021, 6, 27), 72.8),
+    ];
+    return chart1Data;
+  }
+  List<MuscleData> getChart2Data(){
+    final List<MuscleData> chart2Data = [
+      MuscleData(DateTime(2021, 1, 27), 68.7),
+      MuscleData(DateTime(2021, 2, 26), 68.9),
+      MuscleData(DateTime(2021, 6, 25), 72.4),
+      // WeightData(DateTime(2021, 6, 23), 72.3),
+      // WeightData(DateTime(2021, 6, 27), 72.8),
+    ];
+    return chart2Data;
+  }
+  List<FatData> getChart3Data(){
+    final List<FatData> chart3Data = [
+      FatData(DateTime(2021, 1, 27), 68.7),
+      FatData(DateTime(2021, 2, 26), 68.9),
+      FatData(DateTime(2021, 6, 25), 72.4),
+      // WeightData(DateTime(2021, 6, 23), 72.3),
+      // WeightData(DateTime(2021, 6, 27), 72.8),
+    ];
+    return chart3Data;
+  }
 }
 
 class drawDivider extends StatelessWidget {
@@ -391,6 +560,25 @@ class drawDivider extends StatelessWidget {
         color: const Color(0xffe49191),
       )
     ],
+
     );
   }
+}
+
+class WeightData {
+  WeightData(this.time, this.weight);
+  final DateTime time;
+  final double weight;
+}
+
+class MuscleData {
+  MuscleData(this.time, this.weight);
+  final DateTime time;
+  final double weight;
+}
+
+class FatData {
+  FatData(this.time, this.weight);
+  final DateTime time;
+  final double weight;
 }
