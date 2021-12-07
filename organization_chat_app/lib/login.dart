@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:organization_chat_app/home.dart';
+import 'package:organization_chat_app/navigationbar.dart';
+
+import 'initprofile.dart';
 
 bool? isNew = true;
 
@@ -62,14 +64,14 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => InitProfilePage()),
                             );
                           }
                           else{
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => Navigationbar()),
                             );
                           }
                         }
