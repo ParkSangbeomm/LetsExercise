@@ -1,4 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:organization_chat_app/writing.dart';
+
+import 'community_detail.dart';
+
+int _rankIndex = 0;
+List gyms = ['img/pants.jpeg','img/friend.jpeg','img/back.png','img/back23.jpeg','img/gym.jpeg','img/medi.jpeg','img/gym.jpeg'];
+
+List title = ['최고의 성장은 근성장','좋은 날… 좋은 사람들과 운동…','내가… 등을… 했던가?','동기사랑 나라사랑 근육사랑',"내가 누구? ‘헬스장 1년개근’",'새로운 기구는 못참지'];
+List description = [
+  '오늘 바디 체크를 했다!!!! 작았던 바지가 들어가는 순간 목표 달성을 예상했지만, 몸무게 앞자리까지 내려갈 줄 몰랐다',
+  '오늘 승언이랑 운동했다 등 운동을 빡세게 했다 오늘 드디어 레플다운 80키로를 찍었다',
+  '오늘 등 운동을 다시했다 오늘 등 하는 날이 아닌데도 등을 했다 나… 생각보다 등신일지도',
+  '오늘 같은 헬스장에 전역한 동기가 다닌다는 걸 알게됐다 간만에 같이 운동하니까 예전 생각도 나고 좋았다!',
+  '오늘 관장님이 1년동안 하루도 안빠지고 나온 사람이 나밖에 없다고 하셨다!!! 여자친구 없냐고 물어봐서 좀 슬펐다 그래도 좋아!',
+  '오늘 헬스장에 가니 새로운 기구가 들어와있었다! 항상 유튜브에서만 보던 기구가 들어와서 신났다 내일 바로 타봐야겠다',
+];
+List sdesc = [
+  '오늘 바디 체크를 했다!!!! 작았던 바지가..',
+  '오늘 승언이랑 운동했다 등 운동을 빡세..',
+  '오늘 등 운동을 다시했다 오늘 등 하는..',
+  '오늘 같은 헬스장에 전역한 동기가...',
+  '오늘 관장님이 1년동안 하루도 안빠지고..',
+  '오늘 헬스장에 가니 새로운 기구가 들..'
+];
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -8,142 +32,247 @@ class CommunityPage extends StatefulWidget {
 class _CommunityPageState extends State<CommunityPage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-        body: Column(
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.03, MediaQuery.of(context).size.height*0.03, MediaQuery.of(context).size.width*0.03, 0.0),
+        child: Column(
           children: [
             Container(
-              child: Stack(
+              child: Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 0.0 ,horizontal: 15.0),
-                    child: Image.asset('img/gym.jpeg', width: MediaQuery
-                        .of(context)
-                        .size
-                        .width-15,),
+                  Container(
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          _rankIndex = 0;
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        alignment: Alignment.center,
+                        shape: _rankIndex == 0
+                            ? StadiumBorder(
+                          side: BorderSide(
+                              color: Colors.white, width: 2),
+                        )
+                            : StadiumBorder(
+                            side: BorderSide(
+                                color: Colors.transparent, width: 2)),
+                      ),
+                      child: const Text(
+                        '자유게시판',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
                   ),
-                  Positioned(child: makeText(
-                      '마초맨 아령들고있는 사', width: 340, fontSize: 17.0),
-                    top: 190,),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.48,
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.width * 0.09,
+                        0.0,
+                        0,
+                        0.0),
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          _rankIndex = 2;
+                        });
+                      },
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        alignment: Alignment.center,
+                        shape: _rankIndex == 1
+                            ? StadiumBorder(
+                          side: BorderSide(
+                              color: Colors.white, width: 2),
+                        )
+                            : StadiumBorder(
+                            side: BorderSide(
+                                color: Colors.transparent, width: 2)),
+                      ),
+                      child: const Text(
+                        '내 게시글',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            Divider(
-              height: 10.0,
-              color: Colors.white,
-              thickness: 10.0,
-              endIndent: 30.0,
-            ),
-            Container(
-              width:  MediaQuery.of(context).size.width * 1.0,
-              height: MediaQuery.of(context).size.height * 0.03,
-              color: Colors.white,
-              padding: EdgeInsets.fromLTRB(25, 0, 20, 0),
-              child: Text('잡담게시판'
-                ,style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
-                  color: const Color(0xffE49191),
-                ),
-              ),
-            ),
-            Divider(
-              height: 10.0,
-              color: Colors.white,
-              thickness: 10.0,
-              endIndent: 30.0,
-            ),
-            Container(
-              width:  MediaQuery.of(context).size.width * 1.0,
-              height: MediaQuery.of(context).size.height * 0.075,
-              color: Colors.white,
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Text('좋은 날... 좋은 사람들과 함께 운동.. \n너어무 행복'
-                ,style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Divider(
-              height: 10.0,
-              color: Colors.white,
-              thickness: 10.0,
-              endIndent: 30.0,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width * 1.0,
-              height: MediaQuery.of(context).size.height * 0.15,
-              color: Colors.white,
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Text('오늘 승언이랑 운동했다.\n등 운동을 빡세게 했다.\n오늘 드디어 레풀다운 80키로를 찍었다.'
-                  '\n기념으로 같이 샐러드를 먹었다\n얼른 목표 찍고 치킨 먹고 싶다!!!!\n다음에도 같이 하자 승언아!!!'
-                ,style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 13,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Divider(
-              height: 10.0,
-              color: Colors.white,
-              thickness: 10.0,
-              endIndent: 30.0,
-            ),
-            Container(
-              width:  MediaQuery.of(context).size.width * 1.0,
-              height: MediaQuery.of(context).size.height * 0.015,
-              color: const Color(0xffFFF7F0),
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-            ),
-            Divider(
-              height: 10.0,
-              color: Colors.white,
-              thickness: 10.0,
-              endIndent: 30.0,
-            ),
-            Container(
-              width:  MediaQuery.of(context).size.width * 1.0,
-              height: MediaQuery.of(context).size.height * 0.075,
-              color: Colors.white,
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: Text('멋집니다 화이팅이에요!'
-                ,style: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  fontSize: 15,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            Row(
-              children: [
-                Text('서울 중구 저동1가'
-                  ,style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                    color: Colors.black,
-                  ),),
-                SizedBox(width:MediaQuery.of(context).size.width*0.6,),
-                Text('0.8km'
-                  ,style: TextStyle(
-                    //fontWeight: FontWeight.bold,
-                    fontSize: 10,
-                    color: Colors.black,
-                  ),)
-              ],
-            ),
-          ],
-        )
-    );
-  }
 
-  Widget makeText(String title, {double? width, double? fontSize}) {
-    return Container(
-      child: Center(child: Text(title, style: TextStyle(fontSize: fontSize,
-          color: Colors.white,
-          fontWeight: FontWeight.bold),),),
-      width: width,
+            Divider(color: Colors.black, thickness: 0.5),
+            SizedBox(
+              child :Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 10.0,0),
+                    child: ElevatedButton(
+
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Writing()));
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              "글 작성하기",
+                              style: TextStyle(color: Colors.black, fontSize: 10),
+                            ),
+                          ],
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white70,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                        )
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if(_rankIndex==0)
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  itemCount: 6,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, int index) {
+                    return Card(
+                      shadowColor: Colors.black,
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                                    child: Row(
+                                      children: [
+                                        Text('자유게시판'),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.5,
+                                        ),
+                                        Text('Detail >', style: TextStyle(fontSize: 10),)
+                                      ],
+                                    )
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail(gyms: gyms[index], title: title[index], description: description[index],)));
+                              },
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      //mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children:[
+                                          Text(title[index], style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),overflow: TextOverflow.ellipsis,),
+                                          SizedBox(height: 10,),
+                                          Text(sdesc[index], style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,)
+                                        ]
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                    child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+            if(_rankIndex==2)
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  itemCount: 2,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, int index) {
+                    return Card(
+                      shadowColor: Colors.black,
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                                    child: Row(
+                                      children: [
+                                        Text('자유게시판'),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.5,
+                                        ),
+                                        Text('Detail >', style: TextStyle(fontSize: 10),)
+                                      ],
+                                    )
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail(gyms: gyms[index], title: title[index], description: description[index],)));
+                              },
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      //mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children:[
+                                          Text(title[index], style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),overflow: TextOverflow.ellipsis,),
+                                          SizedBox(height: 10,),
+                                          Text(sdesc[index], style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,)
+                                        ]
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                    child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
