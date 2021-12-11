@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:intl/intl.dart';
@@ -526,10 +528,10 @@ class drawDivider extends StatelessWidget {
   final double swidth;
   final String title;
 
-  drawDivider({
+  const drawDivider({Key? key,
     required this.swidth,
     required this.title,
-  });
+  }) : super(key: key);
 
 
   @override
@@ -581,4 +583,39 @@ class FatData {
   FatData(this.time, this.weight);
   final DateTime time;
   final double weight;
+}
+
+
+class draw_OutOfHundred extends StatefulWidget {
+
+  final double userBMI;
+  final String sex;
+  final int age;
+
+  const draw_OutOfHundred({Key? key, required this.userBMI, required this.sex, required this.age}) : super(key: key);
+
+  @override
+  _draw_OutOfHundredState createState() => _draw_OutOfHundredState();
+}
+
+class _draw_OutOfHundredState extends State<draw_OutOfHundred> {
+
+  @override
+  Widget build(BuildContext context) {
+
+    // 성별 확인
+    if(widget.sex == "남"){
+      int plusForId = 0;
+    }else if(widget.sex == "여"){
+      int plus = 26;
+    }
+
+    return Row(
+      children: [
+        Container(
+          color: const Color(0xfff9e9e9),
+        )
+      ],
+    );
+  }
 }
