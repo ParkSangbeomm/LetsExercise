@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:organization_chat_app/googlemap.dart';
 
 class DetailGym extends StatefulWidget {
+  final String orgaDes;
+  final String orgaName;
+  final String address;
+
+  DetailGym({required this.orgaDes, required this.orgaName, required this.address});
   @override
   State<DetailGym> createState() => _DetailGym();
 }
@@ -16,8 +22,8 @@ class _DetailGym extends State<DetailGym> {
             child: Stack(
               children: [
                 Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
-                Positioned(child: makeText('을지로 피트니스 101', width: 240,  fontSize: 23.0),top: 160,),
-                Positioned(child: makeText('서울특별시 동작구 가가대로 100, 지하 1층', width: 340,  fontSize: 17.0), top: 190,),
+                Positioned(child: makeText(widget.orgaName, width: 240,  fontSize: 23.0),top: 160,),
+                Positioned(child: makeText(widget.address, width: 340,  fontSize: 17.0), top: 190,),
                 Positioned(
                   child: IconButton(
                     splashColor: Colors.transparent,
@@ -53,7 +59,7 @@ class _DetailGym extends State<DetailGym> {
                           timeColumn('06:00 ~ :23:00','06:00 ~ :23:00', '매주 월요일'),
                           programColumn('PT / 필라테스', 'O.T 2회'),
                           machineColumn('런닝머신 : 13개 / 레플다운 : 4개 / 롱플머신 : 3개 / 플라이 : 3개 / 체스트 프레스 : 4개 / 레그프레스 :4개'),
-                          contact('010-1111-2222'),
+                          contact(orgaDes),
                           facilities(1,0,1),
                           review('김한동', '너무 좋아요'),
                         ],

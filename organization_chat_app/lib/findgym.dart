@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 //import 'locations.dart' as locations;
 import 'package:organization_chat_app/googlemap.dart';
+import 'package:organization_chat_app/gymdetail.dart';
+List orgades = [
+  '02-999-2229',
+  '',
+  '02-94500740',
+  '02-985-7797',
+  '02-6080-3451',
+  '02-908-2221'
 
-
+];
+List name = ['가인', '현대 휘트니스', '소울 휘트니스', 'Well-Being', 'Double 휘트니스 클럽', '노블휘트니스클럽',
+          '범 휘트니스', 'FUN 휘트니스'];
+List address = ['서울특별시 강북구 수유동 381-2', '서울특별시 강북구 미아동 703-31', '서울특별시 강북구 미아동 7-5 대지빌딩 4층', '서울특별시 강북구 월계로7나길 4 (미아동)', '서울특별시 강북구 인수봉로 293  (수유동)', '서울특별시 강북구 한천로 1093 (수유동, 하나은행)',
+                '서울특별시 강북구 삼양로 293 (수유동)', '서울특별시 강북구 솔샘로 327 (미아동,2층)'];
+List gyms = ['img/fristgym.jpeg','img/fourthgym.jpeg','img/thirdgym.jpeg','img/secondgym.jpeg','img/gym.jpeg','img/thirdgym.jpeg','img/fourthgym.jpeg'];
 class ListGymPage extends StatefulWidget {
   @override
   State<ListGymPage> createState() => _ListGymPageState();
@@ -28,7 +41,7 @@ class _ListGymPageState extends State<ListGymPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: MediaQuery.of(context).size.height*0.05,),
-                      Text('서울 중구 태평로1가'
+                      Text('서울특별시 강북구'
                         ,style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 25,
@@ -59,7 +72,7 @@ class _ListGymPageState extends State<ListGymPage> {
                 Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                    itemCount: 6,
+                    itemCount: 7,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, int index) {
                       return Card(
@@ -69,15 +82,15 @@ class _ListGymPageState extends State<ListGymPage> {
                           children: <Widget>[
                             GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym(orgaDes : orgades[index], orgaName : name[index], address : address[index])));
                                 },
-                                child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.9,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,)),
+                                child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.9,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,)),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(10,17,10,17),
                               child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('을지로 피트니스 101'
+                                    Text(name[index]
                                       ,style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17,
@@ -86,19 +99,13 @@ class _ListGymPageState extends State<ListGymPage> {
                                     SizedBox(height:MediaQuery.of(context).size.height*0.005,),
                                     Row(
                                       children: [
-                                        Text('서울 중구 저동1가'
+                                        Text(address[index]
                                           ,style: TextStyle(
                                             //fontWeight: FontWeight.bold,
                                             fontSize: 10,
                                             color: Colors.black,
                                           ),),
-                                        SizedBox(width:MediaQuery.of(context).size.width*0.6,),
-                                        Text('0.8km'
-                                          ,style: TextStyle(
-                                            //fontWeight: FontWeight.bold,
-                                            fontSize: 10,
-                                            color: Colors.black,
-                                          ),)
+
                                       ],
                                     ),
                                   ]
@@ -117,121 +124,6 @@ class _ListGymPageState extends State<ListGymPage> {
       ),
 
       //resizeToAvoidBottomInset: false,
-    );
-  }
-}
-
-class DetailGym extends StatefulWidget {
-  @override
-  State<DetailGym> createState() => _DetailGym();
-}
-
-class _DetailGym extends State<DetailGym> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        child: Column(
-          children: [
-            Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
-            Column(
-              children: [
-                timeColumn(),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container timeColumn() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container programColumn() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container machineColumn() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container contact() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container facilities() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
-    );
-  }
-
-  Container location() {
-    return Container(
-      child: Column(
-        children: [
-          Text('운영시간'),
-          Text('[평일] 06:00 ~ :23:00'),
-          Text('[주말] 06:00 ~ :23:00'),
-          Text('[공휴일] 06:00 ~ :23:00'),
-          Text('[휴관일] 06:00 ~ :23:00'),
-          Divider(color: Colors.black, thickness : 1.0)
-        ],
-      ),
     );
   }
 }

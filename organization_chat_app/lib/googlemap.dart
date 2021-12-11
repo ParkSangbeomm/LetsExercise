@@ -1,9 +1,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:organization_chat_app/writing.dart';
 import 'locations.dart' as locations;
 import 'gymdetail.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
+String orgaDes = "";
+String orgaName = "";
+String address = "";
+String reAddress = "";
+final Map<String, Marker> _markers = {};
+FirebaseFirestore fireStore = FirebaseFirestore.instance;
+double a = 0;
+double b = 0;
 
 class FindgymPage extends StatefulWidget {
   @override
@@ -11,22 +23,45 @@ class FindgymPage extends StatefulWidget {
 }
 
 class _FindgymPageState extends State<FindgymPage> {
-  final Map<String, Marker> _markers = {};
+  var i=0;
   Future<void> _onMapCreated(GoogleMapController controller) async {
-    final googleOffices = await locations.getGoogleOffices();
-    setState(() {
-      _markers.clear();
-      for (final office in googleOffices.offices) {
+    //final googleOffices = await locations.getGoogleOffices();
+    await makeMarker();
+  }
+  Future<void> makeMarker() async{
+    _markers.clear();
+    await fireStore.collection("Table_TEST2").get().then((querySnapshot) async {
+      for(var result in querySnapshot.docs) {
+        orgaDes = result.get('전화번호');
+        orgaName = result.get('상    호');
+        address = result.get('영업장 소재지 (지번)');
+        reAddress = address;
+        address.replaceAll(" ", "+");
+
+
+
+        final response = await http.get(Uri.parse('https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=AIzaSyBWe2R-gsETR-bTh5NQ3JLVj_xILiYOasE'));
+        a = jsonDecode(response.body)['results'][0]['geometry']['location']['lat'];
+        b = jsonDecode(response.body)['results'][0]['geometry']['location']['lng'];
+
+        print(i);
+        //print(orgaName);
+
+        i++;
+
         final marker = Marker(
-          markerId: MarkerId(office.name),
-          position: LatLng(office.lat, office.lng),
+          markerId: MarkerId(orgaName),
+          position: LatLng(a, b),
           infoWindow: InfoWindow(
-            title: office.name,
-            snippet: office.address,
+            title: orgaName,
+            snippet: orgaDes,
           ),
+
         );
-        _markers[office.name] = marker;
+        _markers[orgaName] = marker;
+
       }
+
     });
   }
 
@@ -84,7 +119,7 @@ class _FindgymPageState extends State<FindgymPage> {
                         Text('내 헬스장이 보이지 않는다면?'),
                         TextButton(
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Writing()));
                           },
                           child: Text('시설 추가/정보 변경'),)
                       ],
@@ -101,14 +136,23 @@ class _FindgymPageState extends State<FindgymPage> {
                   0,
                   0.0),
               child: SizedBox(
-                height: MediaQuery.of(context).size.height * 0.8,
-                child: GoogleMap(
-                  onMapCreated: _onMapCreated,
-                  initialCameraPosition: const CameraPosition(
-                    target: LatLng(35.95, 128.25),
-                    zoom: 2,
-                  ),
-                  markers: _markers.values.toSet(),
+                height: MediaQuery.of(context).size.height * 0.85,
+                child: FutureBuilder(
+                    future: makeMarker(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot snapshot) {
+                      if (_markers.isEmpty) {
+                        return CircularProgressIndicator();
+                      }else{
+                        return GoogleMap(
+                          onMapCreated: _onMapCreated,
+                          initialCameraPosition:  CameraPosition(
+                            target: LatLng(a, b),
+                            zoom: 15,
+                          ),
+                          markers: _markers.values.toSet(),
+                        );}
+                    }
                 ),
               ),
             ),

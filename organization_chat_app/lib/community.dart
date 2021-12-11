@@ -4,6 +4,25 @@ import 'package:organization_chat_app/writing.dart';
 import 'community_detail.dart';
 
 int _rankIndex = 0;
+List gyms = ['img/pants.jpeg','img/friend.jpeg','img/back.png','img/back23.jpeg','img/gym.jpeg','img/medi.jpeg','img/gym.jpeg'];
+
+List title = ['최고의 성장은 근성장','좋은 날… 좋은 사람들과 운동…','내가… 등을… 했던가?','동기사랑 나라사랑 근육사랑',"내가 누구? ‘헬스장 1년개근’",'새로운 기구는 못참지'];
+List description = [
+  '오늘 바디 체크를 했다!!!! 작았던 바지가 들어가는 순간 목표 달성을 예상했지만, 몸무게 앞자리까지 내려갈 줄 몰랐다',
+  '오늘 승언이랑 운동했다 등 운동을 빡세게 했다 오늘 드디어 레플다운 80키로를 찍었다',
+  '오늘 등 운동을 다시했다 오늘 등 하는 날이 아닌데도 등을 했다 나… 생각보다 등신일지도',
+  '오늘 같은 헬스장에 전역한 동기가 다닌다는 걸 알게됐다 간만에 같이 운동하니까 예전 생각도 나고 좋았다!',
+  '오늘 관장님이 1년동안 하루도 안빠지고 나온 사람이 나밖에 없다고 하셨다!!! 여자친구 없냐고 물어봐서 좀 슬펐다 그래도 좋아!',
+  '오늘 헬스장에 가니 새로운 기구가 들어와있었다! 항상 유튜브에서만 보던 기구가 들어와서 신났다 내일 바로 타봐야겠다',
+];
+List sdesc = [
+  '오늘 바디 체크를 했다!!!! 작았던 바지가..',
+  '오늘 승언이랑 운동했다 등 운동을 빡세..',
+  '오늘 등 운동을 다시했다 오늘 등 하는..',
+  '오늘 같은 헬스장에 전역한 동기가...',
+  '오늘 관장님이 1년동안 하루도 안빠지고..',
+  '오늘 헬스장에 가니 새로운 기구가 들..'
+];
 
 class CommunityPage extends StatefulWidget {
   @override
@@ -204,58 +223,15 @@ class _CommunityPageState extends State<CommunityPage> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: const CircleAvatar(
-                                  radius: 15,
-                                  backgroundImage: AssetImage('img/profile.jpeg'),
-                                ),
-                              ),
-                              Text("류준열"),
-                              SizedBox(width: MediaQuery.of(context).size.width * 0.15,),
-                              SizedBox(
-                                width: 94,
-                                height: 30,
-                                child: ElevatedButton(
-                                    onPressed: (){},
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.thumb_up_outlined, size: 10,),
-                                        Text(
-                                          " 좋아요 100",
-                                          style: TextStyle(color: Colors.white, fontSize: 10),
-                                        ),
-
-                                      ],
+                                child: Row(
+                                  children: [
+                                    Text('잡담게시판'),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width * 0.5,
                                     ),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: const Color(0xffe49191),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50)
-                                      ),
-                                    )
-                                ),
-                              ),
-                              SizedBox(width: 20,),
-                              SizedBox(
-                                width: 80,
-                                height: 30,
-                                child: ElevatedButton(
-                                    onPressed: (){},
-                                    child: Row(
-                                      children: [
-                                        Icon(Icons.chat_bubble_outline, size: 10,),
-                                        Text(
-                                          " 댓글 30",
-                                          style: TextStyle(color: Colors.white, fontSize: 10),
-                                        ),
-                                      ],
-                                    ),
-                                    style: ElevatedButton.styleFrom(
-                                      primary: const Color(0xffe49191),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50)
-                                      ),
-                                    )
-                                ),
+                                    Text('Detail >', style: TextStyle(fontSize: 10),)
+                                  ],
+                                )
                               ),
                             ],
                           ),
@@ -265,27 +241,28 @@ class _CommunityPageState extends State<CommunityPage> {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail()));
                             },
                             child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                      //mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    children:[
+                                    Text(title[index], style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),overflow: TextOverflow.ellipsis,),
+                                    SizedBox(height: 10,),
+                                    Text(sdesc[index], style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,)
+                            ]
+                                  ),
                                 ),
+
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset('img/profile.jpeg',width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                  child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
                                 ),
                               ],
                             )),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                              alignment : Alignment.centerLeft,
-                              child: Text("This is explanation")),
-                        )
                       ],
                     ),
                   );
