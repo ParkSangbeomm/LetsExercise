@@ -112,36 +112,7 @@ class _CommunityPageState extends State<CommunityPage> {
             ),
 
             Divider(color: Colors.black, thickness: 0.5),
-            SizedBox(
-              child :Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 10.0,0),
-                    child: ElevatedButton(
 
-                        onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Writing()));
-                        },
-                        child: Row(
-                          children: [
-                            Text(
-                              "글 작성하기",
-                              style: TextStyle(color: Colors.black, fontSize: 10),
-                            ),
-                          ],
-                        ),
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white70,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
-                          ),
-                        )
-                    ),
-                  ),
-                ],
-              ),
-            ),
             if(_rankIndex==0)
               Expanded(
                 child: ListView.builder(
@@ -272,6 +243,13 @@ class _CommunityPageState extends State<CommunityPage> {
               ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => Writing()));
+        },
+        backgroundColor: Color(0xffe49191),
+        child: const Icon(Icons.add),
       ),
     );
   }

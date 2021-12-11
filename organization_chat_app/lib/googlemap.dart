@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:organization_chat_app/register_gym.dart';
 import 'package:organization_chat_app/writing.dart';
 import 'locations.dart' as locations;
 import 'gymdetail.dart';
@@ -119,7 +120,7 @@ class _FindgymPageState extends State<FindgymPage> {
                         Text('내 헬스장이 보이지 않는다면?'),
                         TextButton(
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Writing()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterGym()));
                           },
                           child: Text('시설 추가/정보 변경'),)
                       ],
