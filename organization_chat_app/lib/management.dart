@@ -215,11 +215,16 @@ class friendsList extends StatefulWidget {
 }
 
 class _friendsListState extends State<friendsList> {
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.delete_outline, twoIcons: false),
-    );
+    return Column(
+      children: [
+        friends(name: '김해린', icon1: Icons.account_box, icon2: Icons.delete_outline, twoIcons: false),
+        friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.delete_outline, twoIcons: false),
+        friends(name: '강신엽', icon1: Icons.account_box, icon2: Icons.delete_outline, twoIcons: false),
+        friends(name: '김용현', icon1: Icons.account_box, icon2: Icons.delete_outline, twoIcons: false),
+      ]);
   }
 }
 
@@ -234,9 +239,10 @@ class requestFriends extends StatefulWidget {
 class _requestFriendsState extends State<requestFriends> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: friends(name: '박상범', icon1: Icons.check, icon2: Icons.close, twoIcons: true),
-    );
+    return Column(
+      children: [
+        friends(name: '피카츄', icon1: Icons.check, icon2: Icons.close, twoIcons: true),
+    ]);
   }
 }
 
@@ -249,11 +255,37 @@ class findFriends extends StatefulWidget {
 }
 
 class _findFriendsState extends State<findFriends> {
+  String? nickname;
+  final nicknameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: friends(name: '박상범', icon1: Icons.account_box, icon2: Icons.person_add_alt_rounded, twoIcons: false),
-    );
+    return Column(
+        children: [
+          SizedBox(height: 15),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: TextField(
+                controller: nicknameController,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  contentPadding: EdgeInsets.all(8.0),
+                  border: OutlineInputBorder(),
+                  fillColor: Colors.white,
+                  filled: true,
+                  isDense: true,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    nickname = value;
+                  });
+                }
+            ),
+          ),
+          SizedBox(height: 10),
+          if (nickname == '파이리')
+            friends(name: '파이리', icon1: Icons.account_box, icon2: Icons.person_add_alt_rounded, twoIcons: false),
+    ]);
   }
 }
 
@@ -294,10 +326,31 @@ class friends extends StatelessWidget {
                   child: Row(
                     // mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      CircleAvatar(
-                        radius: 20,
-                        backgroundImage: AssetImage('img/profile.jpeg'),
-                      ),
+                      if (name == "강신엽")
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('img/shinyeop.jpg'),
+                        ),
+                      if (name == "피카츄")
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('img/pikachu.png'),
+                        ),
+                      if (name == "파이리")
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('img/pyli.jpg'),
+                        ),
+                      if (name == "박상범")
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('img/sangbeom.jpg'),
+                        ),
+                      if (name != "강신엽" && name != "피카츄" && name != "파이리" && name != "박상범")
+                        const CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('img/default_image.jpg'),
+                        ),
                       Container(
                         margin: EdgeInsets.fromLTRB(
                             MediaQuery.of(context).size.width * 0.05,
@@ -313,12 +366,15 @@ class friends extends StatelessWidget {
                       ),
                       const Spacer(),
                       if (twoIcons == true)
-                        IconButton(icon: Icon(icon1, color: const Color(
+                        IconButton(splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,icon: Icon(icon1, color: const Color(
                             0xff78b75b)), onPressed: () {},),
                       if (twoIcons == true)
-                        IconButton(icon: Icon(icon2, color: const Color(0xffe49191)), onPressed: () {},)
+                        IconButton(splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,icon: Icon(icon2, color: const Color(0xffe49191)), onPressed: () {},)
                       else
-                        IconButton(icon: Icon(icon2), onPressed: () {},),
+                        IconButton(splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,icon: Icon(icon2), onPressed: () {},),
                     ],
                   ),
                 )

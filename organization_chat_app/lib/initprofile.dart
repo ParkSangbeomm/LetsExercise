@@ -34,8 +34,8 @@ class _InitProfilePageState extends State<InitProfilePage> {
   String? nickname;
   double? height; double? curWeight; double? goalWeight;
   int? year; int? month; int? day;
-  String? gender;
-  bool? public;
+  String? gender = '남';
+  bool? public = true;
 
   @override
   Widget build(BuildContext context) {
