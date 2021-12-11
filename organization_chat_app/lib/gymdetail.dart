@@ -5,8 +5,9 @@ class DetailGym extends StatefulWidget {
   final String orgaDes;
   final String orgaName;
   final String address;
+  final String img;
 
-  DetailGym({required this.orgaDes, required this.orgaName, required this.address});
+  DetailGym({required this.orgaDes, required this.orgaName, required this.address, required this.img});
   @override
   State<DetailGym> createState() => _DetailGym();
 }
@@ -21,7 +22,7 @@ class _DetailGym extends State<DetailGym> {
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
-                Image.asset('img/gym.jpeg',width:MediaQuery.of(context).size.width,),
+                Image.asset(widget.img,width:MediaQuery.of(context).size.width,),
                 Positioned(child: makeText(widget.orgaName, width: 240,  fontSize: 23.0),top: 160,),
                 Positioned(child: makeText(widget.address, width: 340,  fontSize: 17.0), top: 190,),
                 Positioned(

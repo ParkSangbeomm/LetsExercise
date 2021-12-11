@@ -70,73 +70,8 @@ class _CommunityPageState extends State<CommunityPage> {
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.width * 0.09,
-                        0.0,
-                        0,
-                        0.0),
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _rankIndex = 1;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.center,
-                        shape: _rankIndex == 1
-                            ? StadiumBorder(
-                          side: BorderSide(
-                              color: Colors.white, width: 2),
-                        )
-                            : StadiumBorder(
-                            side: BorderSide(
-                                color: Colors.transparent, width: 2)),
-                      ),
-                      child: const Text(
-                        '루틴자랑',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.width * 0.09,
-                        0.0,
-                        0,
-                        0.0),
-                    child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          _rankIndex = 2;
-                        });
-                      },
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        alignment: Alignment.center,
-                        shape: _rankIndex == 2
-                            ? StadiumBorder(
-                          side: BorderSide(
-                              color: Colors.white, width: 2),
-                        )
-                            : StadiumBorder(
-                            side: BorderSide(
-                                color: Colors.transparent, width: 2)),
-                      ),
-                      child: const Text(
-                        '식단인증',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.48,
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(
@@ -238,7 +173,7 @@ class _CommunityPageState extends State<CommunityPage> {
                         ),
                         GestureDetector(
                             onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail()));
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail(gyms: gyms[index], title: title[index], description: description[index],)));
                             },
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,

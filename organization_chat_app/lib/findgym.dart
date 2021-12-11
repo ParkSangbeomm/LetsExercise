@@ -82,7 +82,7 @@ class _ListGymPageState extends State<ListGymPage> {
                           children: <Widget>[
                             GestureDetector(
                                 onTap: () {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym(orgaDes : orgades[index], orgaName : name[index], address : address[index])));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => DetailGym(orgaDes : orgades[index], orgaName : name[index], address : address[index], img : gyms[index])));
                                 },
                                 child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.9,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,)),
                             Padding(
