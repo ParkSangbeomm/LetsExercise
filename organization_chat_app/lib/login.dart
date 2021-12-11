@@ -7,6 +7,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:organization_chat_app/navigationbar.dart';
 
 import 'initprofile.dart';
+import 'package:organization_chat_app/home.dart';
+import 'package:organization_chat_app/navigationbar.dart';
 
 bool? isNew = true;
 
@@ -57,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     onPressed:() {
+                      
                       FirebaseRequest().signInWithGoogle().
                       then((result){
                         if(result != null) {
@@ -66,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                               MaterialPageRoute(
                                   builder: (context) => InitProfilePage()),
                             );
+
                           }
                           else{
                             Navigator.push(
