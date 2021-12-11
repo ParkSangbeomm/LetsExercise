@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:organization_chat_app/exercise_calendar.dart';
 
-
 int _rankIndex = 0;
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
@@ -140,10 +140,10 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  if(_rankIndex ==0 || _rankIndex ==2)
-                    rankBox(),
-                  if(_rankIndex == 1)
-                    rankNoFriendBox(),
+                  if (_rankIndex == 0) rankBox0(),
+                  if (_rankIndex == 1) rankBox1(),
+                  if (_rankIndex == 2) rankBox2(),
+                  // rankNoFriendBox(),
                 ],
               ),
             ),
@@ -208,53 +208,54 @@ class rankNoFriendBox extends StatelessWidget {
             //   ),
             // ),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly ,
-                children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Text('친구들과 경쟁하고 싶다면?',style: TextStyle(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  child: Column(
+                    children: [
+                      Text(
+                        '친구들과 경쟁하고 싶다면?',
+                        style: TextStyle(
                           fontSize: 15,
                           color: Color(0xffffffff),
-                        ),),
-                        TextButton(
-                          onPressed: () {
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-                            minimumSize: Size(60, 25),
-                            alignment: Alignment.center,
-                            backgroundColor: Color(0xffffffff).withOpacity(0.5),
-                            shape: StadiumBorder(
-                              side: BorderSide(
-                                  color: Color(0xffffffff).withOpacity(0.5), width: 0),
-                            ),
-                          ),
-                          child: const Text(
-                            '친구 추가하기',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xffffffff),
-                            ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {},
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+                          minimumSize: Size(60, 25),
+                          alignment: Alignment.center,
+                          backgroundColor: Color(0xffffffff).withOpacity(0.5),
+                          shape: StadiumBorder(
+                            side: BorderSide(
+                                color: Color(0xffffffff).withOpacity(0.5),
+                                width: 0),
                           ),
                         ),
-                      ],
-                    ),
-                  )
-
-                ],
-              ),
+                        child: const Text(
+                          '친구 추가하기',
+                          style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-
         ],
       ),
     );
   }
 }
 
-class rankBox extends StatelessWidget {
-  const rankBox({
+class rankBox0 extends StatelessWidget {
+  const rankBox0({
     Key? key,
   }) : super(key: key);
 
@@ -279,14 +280,199 @@ class rankBox extends StatelessWidget {
                   ),
                   CircleAvatar(
                     radius: 40,
-                    backgroundImage: AssetImage('img/profile.jpeg'),
+                    backgroundColor: Colors.white,
+                    // backgroundImage: AssetImage('img/default_image.jpg'),
+                    child: CircleAvatar(
+                      radius: 38,
+                      backgroundImage: AssetImage('img/default_image.jpg'),
+
+                    ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.01,
                   ),
-                  Text('로운',
+                  Text('김영훈',
                       style: TextStyle(color: Color(0xffffffff), fontSize: 15)),
-                  Text('5시간 / 3일 ',
+                  Text('1일 / 3시간',
+                      style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 15,
+                      )),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            height: 145,
+            width: MediaQuery.of(context).size.width * 0.6,
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // rank_friend(
+                  //     name: '김영훈',
+                  //     times: '2시간',
+                  //     days: '1일',
+                  //     rank: 1.toString()),
+                  rank_friend(
+                      name: '강신엽',
+                      times: '2시간',
+                      days: '1일',
+                      rank: 2.toString()),
+                  rank_friend(
+                      name: '박상범',
+                      times: '1시간',
+                      days: '1일',
+                      rank: 3.toString()),
+                  rank_friend(
+                      name: '김용현',
+                      times: '1시간',
+                      days: '1일',
+                      rank: 4.toString()),
+                  rank_friend(
+                      name: '김해린',
+                      times: '0시간',
+                      days: '1일',
+                      rank: 5.toString()),
+                  // for (var i = 0; i < hotels.length; i++)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class rankBox1 extends StatelessWidget {
+  const rankBox1({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+          0.0, MediaQuery.of(context).size.height * 0.01, 0.0, 0.0),
+      alignment: Alignment.topLeft,
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: 160,
+            alignment: Alignment.topLeft,
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 28,
+                  ),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.white,
+                    // backgroundImage: AssetImage('img/default_image.jpg'),
+                    child: CircleAvatar(
+                      radius: 38,
+                      backgroundImage: AssetImage('img/default_image.jpg'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Text('강신엽',
+                      style: TextStyle(color: Color(0xffffffff), fontSize: 15)),
+                  Text('6일 / 10시간',
+                      style: TextStyle(
+                        color: Color(0xffffffff),
+                        fontSize: 15,
+                      )),
+                ],
+              ),
+            ),
+          ),
+          Container(
+            height: 145,
+            width: MediaQuery.of(context).size.width * 0.6,
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  // rank_friend(
+                  //     name: '강신엽',
+                  //     times: '10시간',
+                  //     days: '6일',
+                  //     rank: 5.toString()),
+                  rank_friend(
+                      name: '김영훈',
+                      times: '7시간',
+                      days: '5일',
+                      rank: 2.toString()),
+                  rank_friend(
+                      name: '김용현',
+                      times: '5시간',
+                      days: '2일',
+                      rank: 3.toString()),
+                  rank_friend(
+                      name: '박상범',
+                      times: '4시간',
+                      days: '3일',
+                      rank: 4.toString()),
+                  rank_friend(
+                      name: '김해린',
+                      times: '2시간',
+                      days: '3일',
+                      rank: 5.toString()),
+                  // for (var i = 0; i < hotels.length; i++)
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class rankBox2 extends StatelessWidget {
+  const rankBox2({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(
+          0.0, MediaQuery.of(context).size.height * 0.01, 0.0, 0.0),
+      alignment: Alignment.topLeft,
+      child: Row(
+        children: [
+          Container(
+            width: MediaQuery.of(context).size.width * 0.3,
+            height: 160,
+            alignment: Alignment.topLeft,
+            child: Center(
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 28,
+                  ),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.white,
+                    child: CircleAvatar(
+                      radius: 38,
+                      backgroundImage: AssetImage('img/default_image.jpg'),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Text('강신엽',
+                      style: TextStyle(color: Color(0xffffffff), fontSize: 15)),
+                  Text('25일 / 5시간',
                       style: TextStyle(
                         color: Color(0xffffffff),
                         fontSize: 15,
@@ -303,30 +489,25 @@ class rankBox extends StatelessWidget {
               child: Column(
                 children: [
                   rank_friend(
-                      name: '김해린',
-                      times: '5시간',
-                      days: '3일',
+                      name: '김영훈',
+                      times: '30시간',
+                      days: '20일',
                       rank: 2.toString()),
                   rank_friend(
-                      name: '김영훈',
-                      times: '5시간',
-                      days: '3일',
+                      name: '박상범',
+                      times: '23시간',
+                      days: '18일',
                       rank: 3.toString()),
                   rank_friend(
-                      name: '박상범',
-                      times: '5시간',
-                      days: '3일',
+                      name: '김용현',
+                      times: '20시간',
+                      days: '14일',
                       rank: 4.toString()),
                   rank_friend(
-                      name: '강신엽',
-                      times: '5시간',
-                      days: '3일',
+                      name: '김해린',
+                      times: '12시간',
+                      days: '8일',
                       rank: 5.toString()),
-                  rank_friend(
-                      name: '김용현',
-                      times: '5시간',
-                      days: '3일',
-                      rank: 6.toString()),
                   // for (var i = 0; i < hotels.length; i++)
                 ],
               ),
@@ -373,8 +554,16 @@ class rank_friend extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 20,
-                backgroundImage: AssetImage('img/profile.jpeg'),
+                backgroundColor: Colors.white,
+                child: CircleAvatar(
+                  radius: 18,
+                  backgroundImage: AssetImage('img/default_image.jpg'),
+                ),
               ),
+              // CircleAvatar(
+              //   radius: 20,
+              //   backgroundImage: AssetImage('img/profile.jpeg'),
+              // ),
               Container(
                 margin: EdgeInsets.fromLTRB(
                     MediaQuery.of(context).size.width * 0.05,

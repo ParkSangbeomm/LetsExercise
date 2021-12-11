@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:organization_chat_app/exercise_memo.dart';
 import 'package:organization_chat_app/src/table_calendar.dart';
 import 'package:organization_chat_app/table_calendar.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -21,8 +22,7 @@ class exercise_calendar extends StatefulWidget {
 class _exercise_calendarState extends State<exercise_calendar> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
-  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
-      .toggledOff; // Can be toggled on/off by longpressing a date
+  RangeSelectionMode _rangeSelectionMode = RangeSelectionMode.toggledOff; // Can be toggled on/off by longpressing a date
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   DateTime? _rangeStart;
@@ -154,6 +154,7 @@ class _exercise_calendarState extends State<exercise_calendar> {
                   valueListenable: _selectedEvents,
                   builder: (context, value, _) {
                     if (value.length != 0) {
+                      value.length = 1;
                       return ListView.builder(
                         itemCount: value.length,
                         itemBuilder: (context, index) {
@@ -231,7 +232,14 @@ class _exercise_calendarState extends State<exercise_calendar> {
                           ),
                           Container(
                             child: TextButton(
-                              onPressed: () => _showAlert(context),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ExerciseMemo()),
+                                );
+                              },
+                              // onPressed: () => _showAlert(context),
+
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.fromLTRB(
                                     MediaQuery.of(context).size.width * 0.03,
