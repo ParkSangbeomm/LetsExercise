@@ -88,7 +88,7 @@ class _CommunityPageState extends State<CommunityPage> {
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                         alignment: Alignment.center,
-                        shape: _rankIndex == 2
+                        shape: _rankIndex == 1
                             ? StadiumBorder(
                           side: BorderSide(
                               color: Colors.white, width: 2),
@@ -110,6 +110,7 @@ class _CommunityPageState extends State<CommunityPage> {
                 ],
               ),
             ),
+
             Divider(color: Colors.black, thickness: 0.5),
             SizedBox(
               child :Row(
@@ -141,69 +142,134 @@ class _CommunityPageState extends State<CommunityPage> {
                 ],
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                itemCount: 6,
-                scrollDirection: Axis.vertical,
-                itemBuilder: (context, int index) {
-                  return Card(
-                    shadowColor: Colors.black,
-                    clipBehavior: Clip.antiAlias,
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
-                          child: Row(
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
-                                child: Row(
-                                  children: [
-                                    Text('잡담게시판'),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width * 0.5,
-                                    ),
-                                    Text('Detail >', style: TextStyle(fontSize: 10),)
-                                  ],
-                                )
-                              ),
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail(gyms: gyms[index], title: title[index], description: description[index],)));
-                            },
+            if(_rankIndex==0)
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  itemCount: 6,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, int index) {
+                    return Card(
+                      shadowColor: Colors.black,
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
                             child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-
-                              children: [
+                              children: <Widget>[
                                 Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                      //mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                    children:[
-                                    Text(title[index], style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),overflow: TextOverflow.ellipsis,),
-                                    SizedBox(height: 10,),
-                                    Text(sdesc[index], style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,)
-                            ]
-                                  ),
-                                ),
-
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
-                                  child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                                    child: Row(
+                                      children: [
+                                        Text('자유게시판'),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.5,
+                                        ),
+                                        Text('Detail >', style: TextStyle(fontSize: 10),)
+                                      ],
+                                    )
                                 ),
                               ],
-                            )),
-                      ],
-                    ),
-                  );
-                },
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail(gyms: gyms[index], title: title[index], description: description[index],)));
+                              },
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      //mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children:[
+                                          Text(title[index], style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),overflow: TextOverflow.ellipsis,),
+                                          SizedBox(height: 10,),
+                                          Text(sdesc[index], style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,)
+                                        ]
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                    child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
-            ),
+            if(_rankIndex==2)
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  itemCount: 2,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (context, int index) {
+                    return Card(
+                      shadowColor: Colors.black,
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(8, 8, 8, 4),
+                            child: Row(
+                              children: <Widget>[
+                                Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 7, 0),
+                                    child: Row(
+                                      children: [
+                                        Text('자유게시판'),
+                                        SizedBox(
+                                          width: MediaQuery.of(context).size.width * 0.5,
+                                        ),
+                                        Text('Detail >', style: TextStyle(fontSize: 10),)
+                                      ],
+                                    )
+                                ),
+                              ],
+                            ),
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => CommunityPageDetail(gyms: gyms[index], title: title[index], description: description[index],)));
+                              },
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      //mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children:[
+                                          Text(title[index], style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),overflow: TextOverflow.ellipsis,),
+                                          SizedBox(height: 10,),
+                                          Text(sdesc[index], style: TextStyle(color: Colors.grey),overflow: TextOverflow.ellipsis,)
+                                        ]
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0, 0, 5, 0),
+                                    child: Image.asset(gyms[index],width : MediaQuery.of(context).size.width*0.2,height:MediaQuery.of(context).size.height * 0.2,fit: BoxFit.fitWidth,),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
           ],
         ),
       ),
