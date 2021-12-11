@@ -51,19 +51,10 @@ class _WritingState extends State<Writing> {
                         Navigator.pop(context);
                       },
                     ),
+                    SizedBox(height: MediaQuery.of(context).size.width * 0.2),
                     const Text("글쓰기", textAlign: TextAlign.right, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.35),
-                    ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(
-                        "완료",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        primary: const Color(0xffe49191),
-                      ),
-                      //border: BorderSide(style료: BorderStyle(Color(0xffe49191)))
-                    )                  ],
+                    ],
                 ),
               ),
               Padding(
@@ -76,10 +67,11 @@ class _WritingState extends State<Writing> {
                 child: SafeArea(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        width: 100,
+                        alignment: Alignment.center,
+                        width: 200,
                         child: InkWell(
                           onTap: () => getImage(),
                           child: _imageFile == null
@@ -127,21 +119,32 @@ class _WritingState extends State<Writing> {
                         margin: EdgeInsets.fromLTRB(0, 32, 0, 32),
                         height: 5 * 24.0,
                         child: TextField(
-                          maxLines: 15,
+                          maxLines: 5,
+                          cursorColor: Color(0xffe49191),
                           decoration: InputDecoration(
-                            hintText: "내용을 입력하세요",
-                            fillColor: Colors.grey[300],
+                            hintText: '운동 기록을 메모해주세요.',
+                            fillColor: Colors.white,
                             filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xff8b8a8a),
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color(0xff8b8a8a),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.width * 0.4,),
+                      SizedBox(height: MediaQuery.of(context).size.width * 0.1,),
                       Container(
                         alignment: Alignment.center,
                         child: ElevatedButton(
                           onPressed: () => Navigator.pop(context),
                           child: Text(
-                            "등록 요청하기",
+                            "완료",
                             style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           style: ElevatedButton.styleFrom(
@@ -149,7 +152,7 @@ class _WritingState extends State<Writing> {
                           ),
                           //border: BorderSide(style: BorderStyle(Color(0xffe49191)))
                         ),
-                      )
+                      ),
                     ]
                     ,
                   ),
