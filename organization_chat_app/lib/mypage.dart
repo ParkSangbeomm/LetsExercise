@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -38,8 +37,9 @@ class _MyPageState extends State<MyPage> {
     double max = arr.elementAt(0);
 
     for(int i=1; i < arr.length; i++){
-      if(max < arr.elementAt(i))
+      if(max < arr.elementAt(i)) {
         max = arr.elementAt(i);
+      }
     }
     return max;
   }
@@ -49,18 +49,17 @@ class _MyPageState extends State<MyPage> {
   Widget build(BuildContext context) {
     double swidth = MediaQuery.of(context).size.width;
     double rwidth = swidth*0.9;
-    double sheight = MediaQuery.of(context).size.height;
     final yearController = TextEditingController();
     final monthController = TextEditingController();
     final dayController = TextEditingController();
     final weightController = TextEditingController();
     final muscleController = TextEditingController();
     final fatController = TextEditingController();
-    double userBMI = 27.3;
+
+
+    double userBMI = 23.4;
     double startPlace;
     double trianglePlace;
-    int BMIamongHundred=10;
-
 
     // 15~37
     if(userBMI <= 18.5){
@@ -92,7 +91,7 @@ class _MyPageState extends State<MyPage> {
               StreamBuilder<Object>(
                 stream: FirebaseFirestore.instance
                     .collection('UserDemo')
-                    .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid,)
+                    .where('uid', isEqualTo: FirebaseAuth.instance.currentUser?.uid,)
                     .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
                   return Row(
@@ -301,7 +300,7 @@ class _MyPageState extends State<MyPage> {
                   Text(userBMI.toString(), style: const TextStyle(fontSize: 30))
                 ],
               ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 7),
               Row(
                 children: [
                   SizedBox(width: startPlace+trianglePlace),
@@ -362,20 +361,9 @@ class _MyPageState extends State<MyPage> {
                 ),
               ),
               // 비만도 띠그래프 끝
-
-              // 비만도 막대그래프
-              SizedBox(height:10),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  // SizedBox(width: 3),
-                  Text("20~24세 남성 100명 중 ", style: TextStyle(fontSize: 15)),
-                  // Text("동일 성별, 동일 연령의 100명 중 ", style: TextStyle(fontSize: 15)),
-                  // TODO : 몇번째로 작은 BMI 숫자 넣기
-                  Text(BMIamongHundred.toString(), style: const TextStyle(fontSize: 30)),
-                  Text(" 번째로 작은 BMI  ", style: TextStyle(fontSize: 15)),
-                ],
-              ),
+              SizedBox(height: 10),
+              // 몇번째로 띠그래프 2
+              draw_OutOfHundred(userBMI: userBMI, sex: '남', age: 34, width: rwidth),
 
               // 신체 상태 끝
               SizedBox(height:15),
@@ -481,21 +469,6 @@ class _MyPageState extends State<MyPage> {
                     primaryYAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.none),
                   )
               ),
-
-              // SizedBox(height:10),
-              // // 골격근량 그래프
-              // Container(
-              //   height: 200,
-              //   child:
-              //       SfCartesianChart(),
-              // ),
-              // SizedBox(height:10),
-              // // 체지방량 그래프
-              // Container(
-              //     height: 200,
-              //     child: SfCartesianChart()
-              // )
-
             ],
 
           )
@@ -604,8 +577,9 @@ class draw_OutOfHundred extends StatefulWidget {
   final double userBMI;
   final String sex;
   final int age;
+  final double width;
 
-  const draw_OutOfHundred({Key? key, required this.userBMI, required this.sex, required this.age}) : super(key: key);
+  const draw_OutOfHundred({Key? key, required this.userBMI, required this.sex, required this.age, required this.width}) : super(key: key);
 
   @override
   _draw_OutOfHundredState createState() => _draw_OutOfHundredState();
@@ -615,20 +589,144 @@ class _draw_OutOfHundredState extends State<draw_OutOfHundred> {
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference publicData = FirebaseFirestore.instance.collection('Table_TEST');
+
+    int plusForId;
+    String docnum;
+    List<String> partText = ["0~25%", "25~50%", "50~75%", "75~100%"];
+
 
     // 성별 확인
-    if(widget.sex == "남"){
-      int plusForId = 0;
-    }else if(widget.sex == "여"){
-      int plus = 26;
+    if(widget.sex == "남") {
+      plusForId = 0;
+    }else{
+    // }else if(widget.sex == "여"){
+      plusForId = 27;
     }
 
-    return Row(
-      children: [
-        Container(
-          color: const Color(0xfff9e9e9),
-        )
-      ],
+    if(widget.age<=24){
+      docnum = plusForId.toString();
+    }else{
+      if((widget.age - 24) % 2 == 0){
+        docnum = ((((widget.age - 24) /2) + plusForId).toInt()).toString();
+      }else{
+        docnum = ((((widget.age - 24)/2 + 1) + plusForId).toInt()).toString();
+      }
+    }
+
+
+    return FutureBuilder<DocumentSnapshot>(
+      future: publicData.doc(docnum).get(),
+
+      builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+        if(snapshot.hasData == false){
+          return const CircularProgressIndicator();
+        }
+        else if(snapshot.hasError){
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text('Error: ${snapshot.error}', style: TextStyle(fontSize:15))
+          );
+        }
+        else {
+          double standard1 = snapshot.data!.get('25th');
+          double standard2 = snapshot.data!.get('50th');
+          double standard3 = snapshot.data!.get('75th');
+          int emphasis;
+
+          if(widget.userBMI <= standard1){
+            emphasis = 0;
+          }else if(widget.userBMI <= standard2){
+            emphasis = 1;
+          }else if(widget.userBMI <= standard3){
+            emphasis = 2;
+          }else{
+            emphasis = 3;
+          }
+          return Column(
+
+            children: [
+
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  // TODO: 나이 동기화
+                  Text("20~24세 ", style: TextStyle(fontSize:15)),
+                  Text("남성 중 ", style: TextStyle(fontSize:15)),
+                  Text("상위 ", style: TextStyle(fontSize:15)),
+                  Text(partText[emphasis], style: TextStyle(fontSize:25)),
+                  Text("의 BMI", style: TextStyle(fontSize:15)),
+
+                ]
+              ),
+              SizedBox(height:10),
+              Row(
+                  children: [
+                    SizedBox(width: widget.width*(1/8)*(2*emphasis + 1)-10),
+                    Icon(CupertinoIcons.arrowtriangle_down_fill, color: const Color(0xffe49191), size: 19)
+                  ]
+              ),
+              Row(
+                children: [
+                  // 0~25
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text("0%~25%", style: TextStyle(color: Colors.white)),
+                    height: 48,
+                    width: widget.width * 0.25,
+                    color: const Color(0xfff9e9e9),
+                  ),
+                  // 25~50
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text("25%~50%", style: TextStyle(color: Colors.white)),
+                    height: 48,
+                    width: widget.width * 0.25,
+                    color: const Color(0xfff4d4d4),
+                  ),
+                  // 50~75
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text("50%~75%", style: TextStyle(color: Colors.white)),
+                    height: 48,
+                    width: widget.width * 0.25,
+                    color: const Color(0xfff1c8c8),
+                  ),
+                  //75~100
+                  Container(
+                    alignment: Alignment.center,
+                    child: const Text("75%~100%", style: TextStyle(color: Colors.white)),
+                    height: 48,
+                    width: widget.width * 0.25,
+                    color: const Color(0xffecb2b2),
+                  )
+                ],
+              ),
+              Container(
+                width: widget.width,
+                child: Stack(
+                    children: [
+                      // Text(snapshot.data!.get('10th').toString()),
+                      const Text("BMI", style: TextStyle(
+                          fontSize: 14, color: Color(0xff4c4c4c))),
+                      Container(width: widget.width * 0.5,
+                          child: Center(child: Text(snapshot.data!.get('25th').toString(), style: const TextStyle(
+                              fontSize: 14, color: Color(0xff4c4c4c))))),
+                      Positioned(left: widget.width * 0.25,
+                          child: Container(width: widget.width * 0.5,
+                              child: Center(child: Text(snapshot.data!.get('50th').toString(), style: const TextStyle(
+                                  fontSize: 14, color: Color(0xff4c4c4c)))))),
+                      Positioned(left: widget.width * 0.5,
+                          child: Container(width: widget.width * 0.5,
+                              child: Center(child: Text(snapshot.data!.get('75th').toString(), style: const TextStyle(
+                                  fontSize: 14, color: Color(0xff4c4c4c)))))),
+                    ]
+                ),
+              ),
+            ],
+          );
+        }
+      }
     );
   }
 }
