@@ -16,8 +16,8 @@ enum SingingCharacter { man, woman }
 enum SingingCharacter2 { open, notopen }
 
 class _EditProfilePageState extends State<EditProfilePage> {
-  SingingCharacter? _character = SingingCharacter.man;
-  SingingCharacter2? _character2 = SingingCharacter2.open;
+  SingingCharacter? _character;
+  SingingCharacter2? _character2;
   File? _image;
   String? nickname;
   double? height; double? curWeight; double? goalWeight;
@@ -48,6 +48,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           day = snapshot.data!.docs[0].get('day');
           gender = snapshot.data!.docs[0].get('gender');
           public = snapshot.data!.docs[0].get('public');
+          //print(gender);
           if (gender =='남'){
             _character = SingingCharacter.man;
           } else{
