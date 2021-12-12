@@ -34,27 +34,29 @@ class _WritingState extends State<Writing> {
               Padding(
                 padding: EdgeInsets.fromLTRB(
                     MediaQuery.of(context).size.width * 0.05,
-                    0,
+                    MediaQuery.of(context).size.height * 0.02,
                     MediaQuery.of(context).size.width * 0.05,
-                    0.0),
+                    MediaQuery.of(context).size.height * 0.015),
                 child: Row(
                   children: <Widget>[
                     IconButton(
                       splashColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       icon: const Icon(
-                        Icons.cancel_outlined,
+                        Icons.arrow_back_ios,
                         color: Color(0xffe49191),
                         size: 30,
                       ),
-                      onPressed: () {
+                      onPressed: (){
                         Navigator.pop(context);
                       },
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.width * 0.2),
-                    const Text("글쓰기", textAlign: TextAlign.right, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
-                    SizedBox(width: MediaQuery.of(context).size.width * 0.35),
-                    ],
+                    Spacer(),
+                    const Text("글쓰기", textAlign: TextAlign.right,
+                        style: TextStyle(color: Color(0xffe49191),
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold)),
+                  ],
                 ),
               ),
               Padding(

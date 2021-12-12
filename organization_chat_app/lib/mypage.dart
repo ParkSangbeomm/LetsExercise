@@ -275,8 +275,8 @@ class _MyPageState extends State<MyPage> {
                                                 Row(
                                                   children: <Widget>[
                                                     //SizedBox(width: MediaQuery.of(context).size.width * 0.03),
-                                                    const Text("체중", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                                                    SizedBox(width: MediaQuery.of(context).size.width * 0.07),
+                                                    const Text("체지방", style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                                                    SizedBox(width: MediaQuery.of(context).size.width * 0.04),
                                                     SizedBox(
                                                       width: MediaQuery.of(context).size.width * 0.5,
                                                       child: TextField(

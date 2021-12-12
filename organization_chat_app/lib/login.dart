@@ -81,10 +81,10 @@ class _LoginPageState extends State<LoginPage> {
                         }
                       });
                     },
-                    child: Text("페이스북으로 로그인", style: TextStyle(fontSize: 13)),
+                    child: Text("구글로 로그인", style: TextStyle(fontSize: 13)),
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff4A6ADC),
-                      padding: EdgeInsets.fromLTRB(96, 0, 96, 0),
+                      padding: EdgeInsets.fromLTRB(113, 0, 113, 0),
                     ),
                   ),
                   SizedBox(height:20),

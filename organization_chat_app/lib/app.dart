@@ -13,6 +13,7 @@ class ExerciseApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'team25',
       home: Navigationbar(),
       initialRoute: '/login',
