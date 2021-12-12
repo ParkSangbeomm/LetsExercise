@@ -17,6 +17,7 @@ class _CommunityPageDetailState extends State<CommunityPageDetail> {
     return Scaffold(
         body: Column(
           children: [
+            SizedBox(height: 30),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.4,
               child: Stack(
@@ -41,18 +42,12 @@ class _CommunityPageDetailState extends State<CommunityPageDetail> {
                         Navigator.pop(context);
                       },
                     ),
-                    top: 30,
                     left: 20,
                   ),
                 ],
               ),
             ),
-            Divider(
-              height: 10.0,
-              color: Colors.white,
-              thickness: 10.0,
-              endIndent: 30.0,
-            ),
+            SizedBox(height: 50),
             Container(
               width:  MediaQuery.of(context).size.width * 1.0,
               height: MediaQuery.of(context).size.height * 0.03,

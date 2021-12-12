@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: EdgeInsets.fromLTRB(
                   MediaQuery.of(context).size.width * 0.05,
-                  MediaQuery.of(context).size.height * 0.05,
+                  MediaQuery.of(context).size.height * 0.01,
                   MediaQuery.of(context).size.width * 0.05,
                   MediaQuery.of(context).size.height * 0.015),
               child: Column(
@@ -55,12 +55,12 @@ class _HomePageState extends State<HomePage> {
                               alignment: Alignment.center,
                               shape: _rankIndex == 0
                                   ? StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.white, width: 2),
-                                    )
+                                side: BorderSide(
+                                    color: Colors.white, width: 2),
+                              )
                                   : StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.transparent, width: 2)),
+                                  side: BorderSide(
+                                      color: Colors.transparent, width: 2)),
                             ),
                             child: const Text(
                               'Today',
@@ -90,12 +90,12 @@ class _HomePageState extends State<HomePage> {
                               alignment: Alignment.center,
                               shape: _rankIndex == 1
                                   ? StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.white, width: 2),
-                                    )
+                                side: BorderSide(
+                                    color: Colors.white, width: 2),
+                              )
                                   : StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.transparent, width: 2)),
+                                  side: BorderSide(
+                                      color: Colors.transparent, width: 2)),
                             ),
                             child: const Text(
                               'Week',
@@ -120,12 +120,12 @@ class _HomePageState extends State<HomePage> {
                               alignment: Alignment.center,
                               shape: _rankIndex == 2
                                   ? StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.white, width: 2),
-                                    )
+                                side: BorderSide(
+                                    color: Colors.white, width: 2),
+                              )
                                   : StadiumBorder(
-                                      side: BorderSide(
-                                          color: Colors.transparent, width: 2)),
+                                  side: BorderSide(
+                                      color: Colors.transparent, width: 2)),
                             ),
                             child: const Text(
                               'Month',
@@ -284,7 +284,7 @@ class rankBox0 extends StatelessWidget {
                     // backgroundImage: AssetImage('img/default_image.jpg'),
                     child: CircleAvatar(
                       radius: 38,
-                      backgroundImage: AssetImage('img/default_image.jpg'),
+                      backgroundImage: AssetImage('img/jojungsuk.PNG'),
 
                     ),
                   ),
@@ -318,22 +318,25 @@ class rankBox0 extends StatelessWidget {
                       name: '강신엽',
                       times: '2시간',
                       days: '1일',
-                      rank: 2.toString()),
+                      rank: 2.toString(),
+                      img_url: 'img/shinyeop.jpg'),
                   rank_friend(
                       name: '박상범',
                       times: '1시간',
                       days: '1일',
-                      rank: 3.toString()),
+                      rank: 3.toString(),
+                      img_url: 'img/sangbeom.jpg'),
                   rank_friend(
                       name: '김용현',
                       times: '1시간',
                       days: '1일',
-                      rank: 4.toString()),
+                      rank: 4.toString(),
+                      img_url: 'img/default_image.jpg'),
                   rank_friend(
                       name: '김해린',
                       times: '0시간',
                       days: '1일',
-                      rank: 5.toString()),
+                      rank: 5.toString(),img_url: 'img/default_image.jpg'),
                   // for (var i = 0; i < hotels.length; i++)
                 ],
               ),
@@ -375,7 +378,7 @@ class rankBox1 extends StatelessWidget {
                     // backgroundImage: AssetImage('img/default_image.jpg'),
                     child: CircleAvatar(
                       radius: 38,
-                      backgroundImage: AssetImage('img/default_image.jpg'),
+                      backgroundImage: AssetImage('img/shinyeop.jpg'),
                     ),
                   ),
                   SizedBox(
@@ -408,22 +411,22 @@ class rankBox1 extends StatelessWidget {
                       name: '김영훈',
                       times: '7시간',
                       days: '5일',
-                      rank: 2.toString()),
+                      rank: 2.toString(),img_url: 'img/jojungsuk.PNG'),
                   rank_friend(
                       name: '김용현',
                       times: '5시간',
                       days: '2일',
-                      rank: 3.toString()),
+                      rank: 3.toString(),img_url: 'img/default_image.jpg'),
                   rank_friend(
                       name: '박상범',
                       times: '4시간',
                       days: '3일',
-                      rank: 4.toString()),
+                      rank: 4.toString(),img_url: 'img/sangbeom.jpg'),
                   rank_friend(
                       name: '김해린',
                       times: '2시간',
                       days: '3일',
-                      rank: 5.toString()),
+                      rank: 5.toString(),img_url: 'img/default_image.jpg'),
                   // for (var i = 0; i < hotels.length; i++)
                 ],
               ),
@@ -464,7 +467,7 @@ class rankBox2 extends StatelessWidget {
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
                       radius: 38,
-                      backgroundImage: AssetImage('img/default_image.jpg'),
+                      backgroundImage: AssetImage('img/shinyeop.jpg'),
                     ),
                   ),
                   SizedBox(
@@ -492,22 +495,22 @@ class rankBox2 extends StatelessWidget {
                       name: '김영훈',
                       times: '30시간',
                       days: '20일',
-                      rank: 2.toString()),
+                      rank: 2.toString(),img_url: 'img/jojungsuk.PNG'),
                   rank_friend(
                       name: '박상범',
                       times: '23시간',
                       days: '18일',
-                      rank: 3.toString()),
+                      rank: 3.toString(),img_url: 'img/sangbeom.jpg'),
                   rank_friend(
                       name: '김용현',
                       times: '20시간',
                       days: '14일',
-                      rank: 4.toString()),
+                      rank: 4.toString(),img_url: 'img/default_image.jpg'),
                   rank_friend(
                       name: '김해린',
                       times: '12시간',
                       days: '8일',
-                      rank: 5.toString()),
+                      rank: 5.toString(),img_url: 'img/default_image.jpg'),
                   // for (var i = 0; i < hotels.length; i++)
                 ],
               ),
@@ -524,11 +527,13 @@ class rank_friend extends StatelessWidget {
   final String times;
   final String days;
   final String rank;
+  final String img_url;
   rank_friend(
       {required this.name,
-      required this.times,
-      required this.days,
-      required this.rank});
+        required this.times,
+        required this.days,
+        required this.rank,
+        required this.img_url});
 
   @override
   Widget build(BuildContext context) {
@@ -557,13 +562,9 @@ class rank_friend extends StatelessWidget {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   radius: 18,
-                  backgroundImage: AssetImage('img/default_image.jpg'),
+                  backgroundImage: AssetImage(this.img_url),
                 ),
               ),
-              // CircleAvatar(
-              //   radius: 20,
-              //   backgroundImage: AssetImage('img/profile.jpeg'),
-              // ),
               Container(
                 margin: EdgeInsets.fromLTRB(
                     MediaQuery.of(context).size.width * 0.05,
@@ -579,17 +580,17 @@ class rank_friend extends StatelessWidget {
               ),
               Container(
                   child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    this.days + ' / ' + this.times,
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Color(0xffffffff),
-                    ),
-                  ),
-                ],
-              )),
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        this.days + ' / ' + this.times,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xffffffff),
+                        ),
+                      ),
+                    ],
+                  )),
             ],
           ),
         )

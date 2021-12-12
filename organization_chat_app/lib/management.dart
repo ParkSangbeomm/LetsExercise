@@ -278,6 +278,7 @@ class _findFriendsState extends State<findFriends> {
                 onChanged: (value) {
                   setState(() {
                     nickname = value;
+
                   });
                 }
             ),
@@ -374,7 +375,8 @@ class friends extends StatelessWidget {
                           highlightColor: Colors.transparent,icon: Icon(icon2, color: const Color(0xffe49191)), onPressed: () {},)
                       else
                         IconButton(splashColor: Colors.transparent,
-                          highlightColor: Colors.transparent,icon: Icon(icon2), onPressed: () {},),
+                          highlightColor: Colors.transparent,icon: Icon(icon2), onPressed: () {Scaffold.of(context)
+                              .showSnackBar(const SnackBar(content: Text("친구 요청을 보냈습니다!!"), backgroundColor: const Color(0xffe49191)));},),
                     ],
                   ),
                 )

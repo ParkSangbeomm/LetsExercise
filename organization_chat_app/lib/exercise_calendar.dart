@@ -154,7 +154,6 @@ class _exercise_calendarState extends State<exercise_calendar> {
                   valueListenable: _selectedEvents,
                   builder: (context, value, _) {
                     if (value.length != 0) {
-                      value.length = 1;
                       return ListView.builder(
                         itemCount: value.length,
                         itemBuilder: (context, index) {
@@ -215,7 +214,7 @@ class _exercise_calendarState extends State<exercise_calendar> {
                         },
                       );
                     } else {
-                      return Column(
+                      return SingleChildScrollView( child: Column(
                         children: [
                           SizedBox(
                             height: 5, // 높이 추가
@@ -265,7 +264,7 @@ class _exercise_calendarState extends State<exercise_calendar> {
                             ),
                           ),
                         ],
-                      );
+                      ));
                     }
                     ;
                   },
