@@ -64,7 +64,7 @@ class _MyPageState extends State<MyPage> {
     int? year; int? month; int? day;
 
 
-    double userBMI = 23.4;
+    double userBMI = 21.1;
     double startPlace;
     double trianglePlace;
 
@@ -101,17 +101,17 @@ class _MyPageState extends State<MyPage> {
                         .where('uid', isEqualTo: FirebaseAuth.instance.currentUser?.uid,)
                         .snapshots(),
                     builder: (context, AsyncSnapshot snapshot) {
-                      if (!snapshot.hasData) {
+                      if (snapshot.hasData == false) {
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }
-                      nickname = snapshot.data!.docs[0].get('nickname');
-                      height = snapshot.data!.docs[0].get('height');
-                      curWeight = snapshot.data!.docs[0].get('curWeight');
-                      year = snapshot.data!.docs[0].get('year');
-                      month = snapshot.data!.docs[0].get('month');
-                      day = snapshot.data!.docs[0].get('day');
+                      nickname = snapshot.data?.docs[0].get('nickname');
+                      height = snapshot.data?.docs[0].get('height');
+                      curWeight = snapshot.data?.docs[0].get('curWeight');
+                      year = snapshot.data?.docs[0].get('year');
+                      month = snapshot.data?.docs[0].get('month');
+                      day = snapshot.data?.docs[0].get('day');
                       return Padding(
                         padding: EdgeInsets.fromLTRB(0, sheight*0.02, 0, 0.0),
                         child: Column(
@@ -123,7 +123,7 @@ class _MyPageState extends State<MyPage> {
                               StreamBuilder<Object>(
                                   stream: FirebaseFirestore.instance
                                       .collection('UserDemo')
-                                      .where('uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid,)
+                                      .where('uid', isEqualTo: FirebaseAuth.instance.currentUser?.uid,)
                                       .snapshots(),
                                   builder: (context, AsyncSnapshot snapshot) {
                                     return Row(
@@ -333,7 +333,7 @@ class _MyPageState extends State<MyPage> {
                   children: [
                     SizedBox(width: 5),
                     // TODO : 닉네임 넣기
-                    Text("류준열", style: TextStyle(fontSize: 18)),
+                    Text("김영훈", style: TextStyle(fontSize: 18)),
                     Text(" 님의 비만도 결과  ", style: TextStyle(fontSize: 18)),
                     // TODO : 비만도 결과 숫자 넣기
                     Text(userBMI.toString(), style: const TextStyle(fontSize: 30))
@@ -439,7 +439,7 @@ class _MyPageState extends State<MyPage> {
                         ),
                       ],
                       // TODO: Axis format 설정
-                      primaryYAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.none, visibleMaximum: 75),
+                      primaryYAxis: NumericAxis(edgeLabelPlacement: EdgeLabelPlacement.none, visibleMaximum: 67),
                     )
                 ),
 
@@ -518,31 +518,31 @@ class _MyPageState extends State<MyPage> {
 
   List<WeightData> getChart1Data(){
     final List<WeightData> chart1Data = [
-      WeightData(DateTime(2021, 1, 27), 68.7),
-      WeightData(DateTime(2021, 2, 26), 68.9),
-      WeightData(DateTime(2021, 6, 23), 72.3),
-      WeightData(DateTime(2021, 6, 25), 72.4),
-      WeightData(DateTime(2021, 6, 27), 72.8),
+      WeightData(DateTime(2021, 1, 27), 65.8),
+      WeightData(DateTime(2021, 2, 26), 66.2),
+      WeightData(DateTime(2021, 3, 23), 64.8),
+      WeightData(DateTime(2021, 4, 25), 64.3),
+      WeightData(DateTime(2021, 5, 27), 64.0),
     ];
     return chart1Data;
   }
   List<MuscleData> getChart2Data(){
     final List<MuscleData> chart2Data = [
-      MuscleData(DateTime(2021, 1, 27), 68.7),
-      MuscleData(DateTime(2021, 2, 26), 68.9),
-      MuscleData(DateTime(2021, 6, 25), 72.4),
-      // WeightData(DateTime(2021, 6, 23), 72.3),
-      // WeightData(DateTime(2021, 6, 27), 72.8),
+      MuscleData(DateTime(2021, 1, 27), 31.8),
+      MuscleData(DateTime(2021, 2, 26), 32.5),
+      MuscleData(DateTime(2021, 3, 23), 32.5),
+      MuscleData(DateTime(2021, 4, 25), 32.8),
+      MuscleData(DateTime(2021, 5, 27), 33.0),
     ];
     return chart2Data;
   }
   List<FatData> getChart3Data(){
     final List<FatData> chart3Data = [
-      FatData(DateTime(2021, 1, 27), 68.7),
-      FatData(DateTime(2021, 2, 26), 68.9),
-      FatData(DateTime(2021, 6, 25), 72.4),
-      // WeightData(DateTime(2021, 6, 23), 72.3),
-      // WeightData(DateTime(2021, 6, 27), 72.8),
+      FatData(DateTime(2021, 1, 27), 12.4),
+      FatData(DateTime(2021, 2, 26), 11.6),
+      FatData(DateTime(2021, 3, 23), 11.0),
+      FatData(DateTime(2021, 4, 25), 11.0),
+      FatData(DateTime(2021, 5, 27), 10.9),
     ];
     return chart3Data;
   }
