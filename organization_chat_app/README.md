@@ -1,8 +1,6 @@
 # 운동하자
 ![](./readmeImage/mainPage.png)
-
-
-
+<br/><br/>
 ## 💡 Goal
 * 지속적인 운동을 위한 동기부여<br>
 * 함께 운동하는 분위기 조성<br>
